@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +19,8 @@ import DeletedProjects from './components/DeletedProjects';
 import Show from './components/Show'
 // ==================================================================================
 const App = () => {
+    const navigate = useNavigate()
+
     const [projects, setProjects] = useState([
         {
             project_name: 'My first project!',
@@ -40,9 +42,14 @@ const App = () => {
         }
     ])
 
+    // const getProjects = () => {
+        
+    // }
+    // register/login =================================================================
+    const [user, setUser] = useState(null)
     const register = (e) => {
         e.preventDefault()
-        console.log('register!')
+        setUser(e.target.username.value)
         fetch('http://localhost:8000/api/v1/users/register', {
             method: 'POST',
             body: JSON.stringify({
@@ -52,15 +59,43 @@ const App = () => {
             }),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            }, 
+            credentials: 'include'
         })
-        .then (res => console.log(res.json()))
-        // res.json())
-        // .then (resJson => {
-        //     getDogs()
-        //     navigate('/index')
-        // })
+        .then (res => res.json())
+        .then (resJson => {
+            navigate('/index')
+            console.log('register!')
+        })
     }
+
+    const login = (e) => {
+        e.preventDefault(e)
+        setUser(e.target.username.value)
+        setUser(e.target.username.value)
+        fetch('http://localhost:8000/api/v1/users/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: e.target.username.value,
+                email: e.target.email.value,
+                password: e.target.password.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+        .then (res => res.json())
+        .then (resJson => {
+            navigate('/index')
+        })
+    }
+    const logout = (e) => {
+        e.preventDefault()
+        console.log('successfully logged out')
+        fetch('http://localhost:8000/api/v1/users/logout')
+    }
+    // ================================================================================
     return (
         <div >
 
@@ -78,8 +113,17 @@ const App = () => {
                         </Nav>
                         <Nav>
                             <Nav.Link href="/show">show (delete later)</Nav.Link>
-                            <Nav.Link href="/register">Register</Nav.Link>
-                            <Nav.Link href="/login">Login</Nav.Link>
+                            {user === null ? 
+                                <>
+                                    <Nav.Link href="/register">Register</Nav.Link>
+                                    <Nav.Link href="/login">Login</Nav.Link>
+                                </>
+                                :
+                                <>
+                                    <Navbar.Text>Welcome back {user}!</Navbar.Text>
+                                    <Nav.Link href="/index" onClick={() => logout()}>Logout</Nav.Link>
+                                </>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -94,7 +138,7 @@ const App = () => {
 
                 <Route path='/show' element={<Show/>} />
                 <Route path='/register' element={<RegisterUser register={register}/>} />
-                <Route path='/login' element={<LoginUser/>} />
+                <Route path='/login' element={<LoginUser login={login}/>} />
 
             </Routes>
 
