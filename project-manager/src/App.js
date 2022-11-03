@@ -43,6 +43,23 @@ const App = () => {
     const register = (e) => {
         e.preventDefault()
         console.log('register!')
+        fetch('http://localhost:8000/api/v1/users/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: e.target.username.value,
+                email: e.target.email.value,
+                password: e.target.password.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then (res => console.log(res.json()))
+        // res.json())
+        // .then (resJson => {
+        //     getDogs()
+        //     navigate('/index')
+        // })
     }
     return (
         <div >
