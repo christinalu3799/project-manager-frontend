@@ -42,9 +42,12 @@ const App = () => {
         }
     ])
 
-    // const getProjects = () => {
-        
-    // }
+    const getProjects = () => {
+        fetch('http://localhost:8000/api/v1/projects/', {
+            credentials: 'include'
+        })
+        .then((res) => console.log(res.json()))
+    }
     // register/login =================================================================
     const [user, setUser] = useState(null)
     const register = (e) => {
@@ -64,6 +67,7 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
+            getProjects()
             navigate('/index')
             console.log('register!')
         })
@@ -87,6 +91,7 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
+            getProjects()
             navigate('/index')
         })
     }
