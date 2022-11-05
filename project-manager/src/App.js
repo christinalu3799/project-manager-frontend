@@ -21,26 +21,26 @@ import Show from './components/Show'
 const App = () => {
     const navigate = useNavigate()
 
-    const [projects, setProjects] = useState([
-        {
-            project_name: 'My first project!',
-            project_deadline: '2022-11-15',
-            project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
-            project_status: 'in progress',
-        },
-        {
-            project_name: 'My second project!',
-            project_deadline: '2022-12-15',
-            project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
-            project_status: 'not started',
-        },
-        {
-            project_name: 'My third project!',
-            project_deadline: '2022-12-23',
-            project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
-            project_status: 'not started',
-        }
-    ])
+    // const [projects, setProjects] = useState([
+    //     {
+    //         project_name: 'My first project!',
+    //         project_deadline: '2022-11-15',
+    //         project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
+    //         project_status: 'in progress',
+    //     },
+    //     {
+    //         project_name: 'My second project!',
+    //         project_deadline: '2022-12-15',
+    //         project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
+    //         project_status: 'not started',
+    //     },
+    //     {
+    //         project_name: 'My third project!',
+    //         project_deadline: '2022-12-23',
+    //         project_description: 'ajlfksdaj; djaksl;fd jalsk;djf a;lwkefjaw lkefjaw',
+    //         project_status: 'not started',
+    //     }
+    // ])
 
     const getProjects = () => {
         fetch('http://localhost:8000/api/v1/projects/', {
