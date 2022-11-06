@@ -78,8 +78,35 @@ const App = () => {
 
     const login = (e) => {
         e.preventDefault(e)
-        setUser(e.target.username.value)
-        setUser(e.target.username.value)
+        console.log(e.target.username.value)
+        console.log(e.target.email.value)
+        console.log(e.target.password.value)
+        
+        // try {
+        //     const response = await fetch('http://localhost:8000/api/v1/users/login', {
+        //         method: 'POST', 
+        //         body: JSON.stringify({
+        //             username: e.target.username.value,
+        //             email: e.target.email.value,
+        //             password: e.target.password.value
+        //         }),
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         credentials: 'include'
+        //     })
+
+        //     console.log(response)
+        //     console.log('BODY: ', response.body)
+
+        //     if (response.status === 200) {
+        //         getProjects()
+        //         navigate('/index')
+        //     }
+        // }
+        // catch (err) {
+        //     console.log('Error => ', err)
+        // }
         fetch('http://localhost:8000/api/v1/users/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -94,8 +121,14 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            getProjects()
-            navigate('/index')
+            console.log('in 2nd .then: ', resJson)
+            if (resJson.status.code === 401) {
+                console.log(resJson.status.message)
+            } else {
+                setUser(e.target.username.value)
+                getProjects()
+                navigate('/index')
+            }
         })
     }
     const logout = (e) => {
