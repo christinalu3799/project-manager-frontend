@@ -9,6 +9,8 @@ const LoginUser = (props) => {
             <input type='text' id='username' placeholder='Username' className='register-input'/>
             <input type='text' id='email' placeholder='Email' className='register-input'/>
             <input type='password' id='password' placeholder='Password' className='register-input'/>
+            {/* show user error message if login credentials are wrong */}
+            {props.loginSuccess === false ? <p>Oops! Please try again.</p> : console.log('logged in successfully!')}
             <input type='submit' value='Log In' className='register-submit-btn'/>
         </form>
     </div>

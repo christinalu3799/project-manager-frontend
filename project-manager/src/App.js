@@ -76,37 +76,12 @@ const App = () => {
         })
     }
 
+    const [loginSuccess, setLogin] = useState(null)
     const login = (e) => {
         e.preventDefault(e)
         console.log(e.target.username.value)
         console.log(e.target.email.value)
         console.log(e.target.password.value)
-        
-        // try {
-        //     const response = await fetch('http://localhost:8000/api/v1/users/login', {
-        //         method: 'POST', 
-        //         body: JSON.stringify({
-        //             username: e.target.username.value,
-        //             email: e.target.email.value,
-        //             password: e.target.password.value
-        //         }),
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         credentials: 'include'
-        //     })
-
-        //     console.log(response)
-        //     console.log('BODY: ', response.body)
-
-        //     if (response.status === 200) {
-        //         getProjects()
-        //         navigate('/index')
-        //     }
-        // }
-        // catch (err) {
-        //     console.log('Error => ', err)
-        // }
         fetch('http://localhost:8000/api/v1/users/login', {
             method: 'POST',
             body: JSON.stringify({
@@ -121,11 +96,12 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            console.log('in 2nd .then: ', resJson)
             if (resJson.status.code === 401) {
                 console.log(resJson.status.message)
+                setLogin(false)
             } else {
                 setUser(e.target.username.value)
+                setLogin(true)
                 getProjects()
                 navigate('/index')
             }
@@ -179,7 +155,7 @@ const App = () => {
 
                 <Route path='/show' element={<Show/>} />
                 <Route path='/register' element={<RegisterUser register={register}/>} />
-                <Route path='/login' element={<LoginUser login={login}/>} />
+                <Route path='/login' element={<LoginUser login={login} loginSuccess={loginSuccess}/>} />
 
             </Routes>
 
