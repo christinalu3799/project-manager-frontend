@@ -41,12 +41,15 @@ const App = () => {
     //         project_status: 'not started',
     //     }
     // ])
-
+    const [project, setProject] = useState(null)
     const getProjects = () => {
         fetch('http://localhost:8000/api/v1/projects/', {
             credentials: 'include'
         })
-        .then((res) => console.log(res.json()))
+        .then((res) => res.json())
+        .then(resJson => {
+            setProject(resJson.data)
+        })
     }
     // register/login =================================================================
     const [user, setUser] = useState(null)
