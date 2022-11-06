@@ -53,9 +53,9 @@ const App = () => {
     }
     // register/login =================================================================
     const [user, setUser] = useState(null)
+    const [registerSuccess, setRegister] = useState(null)
     const register = (e) => {
         e.preventDefault()
-        setUser(e.target.username.value)
         fetch('http://localhost:8000/api/v1/users/register', {
             method: 'POST',
             body: JSON.stringify({
@@ -70,9 +70,15 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            getProjects()
-            navigate('/index')
-            console.log('register!')
+            if (resJson.status.code === 401) {
+                console.log(resJson.status.message)
+                setRegister(false)
+            } else {
+                setUser(e.target.username.value)
+                setRegister(true)
+                getProjects()
+                navigate('/index')
+            }
         })
     }
 
@@ -154,7 +160,7 @@ const App = () => {
                 <Route path='/deleted-projects' element={<DeletedProjects/>}/>
 
                 <Route path='/show' element={<Show/>} />
-                <Route path='/register' element={<RegisterUser register={register}/>} />
+                <Route path='/register' element={<RegisterUser register={register} registerSuccess={registerSuccess}/>} />
                 <Route path='/login' element={<LoginUser login={login} loginSuccess={loginSuccess}/>} />
 
             </Routes>
