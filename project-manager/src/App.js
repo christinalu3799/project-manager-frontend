@@ -112,7 +112,6 @@ const App = () => {
                                 </NavDropdown>
                             </Nav>
                             <Nav>
-                                <Nav.Link as={Link} to="/show">show (delete later)</Nav.Link>
                                 {user === null ? 
                                     <>
                                         <Nav.Link as={Link} to="/register">Register</Nav.Link>
