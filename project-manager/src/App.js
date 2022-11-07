@@ -116,8 +116,10 @@ const App = () => {
                                     </>
                                     :
                                     <>
-                                        <Navbar.Text>Welcome back {user}!</Navbar.Text>
-                                        <Nav.Link as={Link} to="/" onClick={() => logout()}>Logout</Nav.Link>
+                                        <NavDropdown title={`Welcome back ${user}!`}>
+                                            {/* <Navbar.Text>Welcome back {user}!</Navbar.Text> */}
+                                            <NavDropdown.Item as={Link} to="/" onClick={() => logout()}>Logout</NavDropdown.Item>
+                                        </NavDropdown>
                                     </>
                                 }
                             </Nav>
