@@ -1,10 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../stylesheets/Index.css'
 import { ProjectContext  } from '../contexts/ProjectContext'
 
 const ProjectCard = (props) => {
     const [projects, setProjects] = useContext(ProjectContext)
+
+    const getShowProject = (id) => {
+        console.log('id: ', id)
+        // setShowId(id)
+        // console.log(showId)
+        props.setShowProject(projects.find(project => project.id === id))
+    }
+
     return (
         <>
             {projects.map((project => {
@@ -15,7 +23,7 @@ const ProjectCard = (props) => {
                             <p>DUE: {project.project_deadline}</p>
                             <p className='truncate'>{project.project_description}</p>
                             <p>{project.project_status}</p>
-                            <Link to='/show' onClick={()=>props.setShowId(project.id)}>Show Details</Link>
+                            <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
                         </div>
                     )
             }))}

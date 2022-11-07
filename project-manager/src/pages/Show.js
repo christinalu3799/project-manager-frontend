@@ -1,17 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import '../stylesheets/Show.css'
-import { ProjectContext  } from '../contexts/ProjectContext'
-
 const Show = (props) => {
-    const [projects, setProjects] = useContext(ProjectContext)
-    const findProject = () => {
-        let myProject = projects.find(project => project.id === props.showId)
-        props.setShowProject(myProject)
-    }
-    // call function 1 time to find project to show on page
-    useEffect(() => {
-        findProject()
-    }, [])
 
     return (
         <div className='show'>
@@ -23,6 +12,23 @@ const Show = (props) => {
                 <h5>DUE: {props.showProject.project_deadline}</h5>
                 <p>{props.showProject.project_description}</p>
                 <p>STATUS: {props.showProject.project_status}</p>
+
+                {/* <Tabs
+                    id="controlled-tab-example"
+                    activeKey={key}
+                    onSelect={(k) => setKey(k)}
+                    className="mb-3"
+                    >
+                    <Tab eventKey="home" title="Home">
+                        <Sonnet />
+                    </Tab>
+                    <Tab eventKey="profile" title="Profile">
+                        <Sonnet />
+                    </Tab>
+                    <Tab eventKey="contact" title="Contact" disabled>
+                        <Sonnet />
+                    </Tab>
+                </Tabs> */}
             </div>
         </div>
     )

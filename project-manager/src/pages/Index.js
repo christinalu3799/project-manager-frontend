@@ -10,7 +10,9 @@ const Index = (props) => {
 
                 <h1 className='title'>My Projects</h1>
               
-                <ProjectContainer setShowId={props.setShowId}/>
+                <ProjectContainer
+                    setShowProject={props.setShowProject}
+                    showProject={props.showProject}/>
                 
                 
             </div>

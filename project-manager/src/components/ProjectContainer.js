@@ -5,7 +5,9 @@ import ProjectCard from './ProjectCard'
 const ProjectContainer = (props) => {
     return (
         <div className='project-container'>
-            <ProjectCard setShowId={props.setShowId}/>
+            <ProjectCard 
+                setShowProject={props.setShowProject}
+                showProject={props.showProject}/>
         </div>
     )
 }

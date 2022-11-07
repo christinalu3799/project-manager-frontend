@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import {Route, Routes, useNavigate, Link} from 'react-router-dom';
 import { ProjectProvider  } from './contexts/ProjectContext';
-import { ProjectContext  } from './contexts/ProjectContext'
-
+// import { ProjectContext  } from './contexts/ProjectContext'
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -91,9 +90,7 @@ const App = () => {
         console.log('successfully logged out')
     }
     // show page project id =========================================================
-    const [showId, setShowId] = useState(null)
     const [showProject, setShowProject] = useState(null)
-
     
 // ==================================================================================
     return (
@@ -135,14 +132,13 @@ const App = () => {
                 </Navbar>
 
                 <Routes>
-                    <Route path='/index' element={<Index setShowId={setShowId}/>} />
+                    <Route path='/index' element={<Index setShowProject={setShowProject} showProject={showProject}/>} />
                     <Route path='/new-project' element={<NewProject/>} />
 
                     <Route path='/completed-projects' element={<CompletedProjects/>}/>
                     <Route path='/deleted-projects' element={<DeletedProjects/>}/>
-                    
 
-                    <Route path='/show' element={<Show showId={showId} setShowProject={setShowProject} showProject={showProject}/>}/>
+                    <Route path='/show/:id' element={<Show showProject={showProject}/>}/>
 
                     <Route path='/register' element={<RegisterUser register={register} registerSuccess={registerSuccess}/>} />
                     <Route path='/' element={<RegisterUser register={register} registerSuccess={registerSuccess}/>} />
