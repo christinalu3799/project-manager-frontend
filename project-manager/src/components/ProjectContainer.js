@@ -2,10 +2,10 @@ import React from 'react'
 import '../stylesheets/Index.css'
 import ProjectCard from './ProjectCard'
 
-const ProjectContainer = () => {
+const ProjectContainer = (props) => {
     return (
         <div className='project-container'>
-            <ProjectCard />
+            <ProjectCard setShowId={props.setShowId}/>
         </div>
     )
 }

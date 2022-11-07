@@ -10,10 +10,13 @@ export const ProjectProvider = (props) => {
         .then(resJson => {
             setProjects(resJson.data)
         })
+        console.log('in context')
     }
 
-    // this hook is similar to componen
-    useEffect(() => getProjects())
+    // this hook is similar to component did mount
+    useEffect(() => {
+        getProjects()
+    }, [])
 
     return  <ProjectContext.Provider value={[projects, setProjects]}>
                 {props.children}
