@@ -26,7 +26,7 @@ const ShowTabs = (props) => {
                             <h5>DUE: {props.showProject.project_deadline}</h5>
                             <br/>
                             <p>{props.showProject.project_description}</p>
-
+                            <br/>
                             <StatusIcons status={props.showProject.project_status}/>
                         </div>
                     </Tab>

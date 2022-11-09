@@ -5,8 +5,6 @@ const Logs = () => {
     if (logs !== null) {
         return (
             <div>
-                <h3>Log</h3>
-                <br/>
                 {logs.map((log) => {
                     return (
                         <div key={log.id}>

@@ -6,8 +6,6 @@ const Tasks = () => {
     if (tasks !== null) {
         return (
             <div>
-                <h3>To Do:</h3>
-                <br/>
                 {tasks.map((task) => {
                     return (
                         <div key={task.id}>
