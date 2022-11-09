@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../stylesheets/Index.css'
 import { ProjectContext  } from '../contexts/ProjectContext'
+import StatusIcons from './StatusIcons'
 
 const ProjectCard = (props) => {
     const [projects, setProjects] = useContext(ProjectContext)
@@ -25,7 +26,7 @@ const ProjectCard = (props) => {
                                 <h3>{project.project_name}</h3>
                                 <p>DUE: {project.project_deadline}</p>
                                 <p className='truncate'>{project.project_description}</p>
-                                <p>{project.project_status}</p>
+                                <StatusIcons status={project.project_status} />
                                 <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
                             </div>
                         )
