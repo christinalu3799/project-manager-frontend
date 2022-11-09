@@ -3,7 +3,6 @@ import React, { useState, createContext, useEffect } from 'react'
 export const TaskProvider = (props) => {
     const [tasks, setTasks] = useState(null)
 
-    console.log('in task provider!')
     const getTasks = () => {
         fetch(`http://localhost:8000/api/v1/projects/tasks/${props.project_id}`, {
             credentials: 'include'
