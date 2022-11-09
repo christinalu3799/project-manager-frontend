@@ -18,20 +18,18 @@ const ProjectCard = (props) => {
         console.log('inside return!')
         return (
             <>
-                {
-                    projects.map((project => {
-                        return (
-                            <div key={project.id} className='project-card'>
+                {projects.map((project => {
+                    return (
+                        <div key={project.id} className='project-card'>
 
-                                <h3>{project.project_name}</h3>
-                                <p>DUE: {project.project_deadline}</p>
-                                <p className='truncate'>{project.project_description}</p>
-                                <StatusIcons status={project.project_status} />
-                                <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
-                            </div>
-                        )
-                    }))
-                }  
+                            <h3>{project.project_name}</h3>
+                            <p>DUE: {project.project_deadline}</p>
+                            <p className='truncate'>{project.project_description}</p>
+                            <StatusIcons status={project.project_status} />
+                            <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
+                        </div>
+                    )
+                }))}  
             </>
         )
     }

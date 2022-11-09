@@ -16,13 +16,10 @@ const Index = (props) => {
                         <ProjectContainer
                             setShowProject={props.setShowProject}
                             showProject={props.showProject}/>
-                        
-                        
+    
                     </div>
                 </div>
             </ProjectProvider>
-            
-            
         )
     } else {
         return (
