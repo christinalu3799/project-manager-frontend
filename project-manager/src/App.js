@@ -13,7 +13,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Index from './pages/Index'
 import RegisterUser from './components/RegisterUser';
 import LoginUser from './components/LoginUser';
-import NewProject from './components/NewProject';
+import NewProject from './pages/NewProject';
 import CompletedProjects from './components/CompletedProjects'
 import DeletedProjects from './components/DeletedProjects';
 import Show from './pages/Show'
