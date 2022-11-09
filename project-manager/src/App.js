@@ -94,7 +94,7 @@ const App = () => {
     
 // ==================================================================================
     return (
-        <ProjectProvider>
+        // <ProjectProvider>
             <div className='main'>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                     <Container className='nav-container'>
@@ -131,7 +131,7 @@ const App = () => {
                 </Navbar>
 
                 <Routes>
-                    <Route path='/index' element={<Index setShowProject={setShowProject} showProject={showProject}/>} />
+                    <Route path='/index' element={<Index user={user} setShowProject={setShowProject} showProject={showProject}/>} />
                     <Route path='/new-project' element={<NewProject/>} />
 
                     <Route path='/completed-projects' element={<CompletedProjects/>}/>
@@ -144,7 +144,7 @@ const App = () => {
                     <Route path='/login' element={<LoginUser login={login} loginSuccess={loginSuccess}/>} />
                 </Routes>
             </div>
-        </ProjectProvider>
+        // </ProjectProvider>
     );
 }
 

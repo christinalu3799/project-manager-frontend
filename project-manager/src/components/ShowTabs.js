@@ -14,10 +14,11 @@ const ShowTabs = (props) => {
             fill
         >
             <Tab eventKey="home" title="Details">
-                {/* <Sonnet /> */}
-                <h5>DUE: {props.showProject.project_deadline}</h5>
-                <p>{props.showProject.project_description}</p>
-                <p>STATUS: {props.showProject.project_status}</p>
+                <div className='details'>
+                    <h5>DUE: {props.showProject.project_deadline}</h5>
+                    <p>{props.showProject.project_description}</p>
+                    <p>STATUS: {props.showProject.project_status}</p>
+                </div>
             </Tab>
             <Tab eventKey="profile" title="Tasks">
                 <Tasks />
@@ -25,7 +26,7 @@ const ShowTabs = (props) => {
             <Tab eventKey="contact" title="Log">
                 <Log />
             </Tab>
-    </Tabs>
+        </Tabs>
     )
 }
 

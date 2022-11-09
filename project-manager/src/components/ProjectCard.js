@@ -12,23 +12,28 @@ const ProjectCard = (props) => {
         // console.log(showId)
         props.setShowProject(projects.find(project => project.id === id))
     }
+    console.log('here!')
+    if (projects !== null) {
+        console.log('inside return!')
+        return (
+            <>
+                {
+                    projects.map((project => {
+                        return (
+                            <div key={project.id} className='project-card'>
 
-    return (
-        <>
-            {projects.map((project => {
-                    return (
-                        <div key={project.id} className='project-card'>
-
-                            <h3>{project.project_name}</h3>
-                            <p>DUE: {project.project_deadline}</p>
-                            <p className='truncate'>{project.project_description}</p>
-                            <p>{project.project_status}</p>
-                            <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
-                        </div>
-                    )
-            }))}
-        </>
-    )
+                                <h3>{project.project_name}</h3>
+                                <p>DUE: {project.project_deadline}</p>
+                                <p className='truncate'>{project.project_description}</p>
+                                <p>{project.project_status}</p>
+                                <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
+                            </div>
+                        )
+                    }))
+                }  
+            </>
+        )
+    }
 }
 
 export default ProjectCard
