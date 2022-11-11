@@ -1,10 +1,19 @@
 import React, { useState, createContext, useEffect } from 'react'
 
+let baseURL = ''
+
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:8000/api/v1'
+} else {
+    baseURL = 'process.env.REACT_APP_BACKEND_URL'
+}
+
 export const TaskProvider = (props) => {
+    
     const [tasks, setTasks] = useState(null)
 
     const getTasks = () => {
-        fetch(`http://localhost:8000/api/v1/projects/tasks/${props.project_id}`, {
+        fetch(`${baseURL}/projects/tasks/${props.project_id}`, {
             credentials: 'include'
         })
         .then((res) => res.json())

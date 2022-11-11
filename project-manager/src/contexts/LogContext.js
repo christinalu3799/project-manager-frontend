@@ -1,11 +1,20 @@
 import React, { useState, createContext, useEffect } from 'react'
 
-export const LogProvider = (props) => {
-    const [logs, setLogs] = useState(null)
+let baseURL = ''
 
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:8000/api/v1'
+} else {
+    baseURL = 'process.env.REACT_APP_BACKEND_URL'
+}
+
+export const LogProvider = (props) => {
+    
+    const [logs, setLogs] = useState(null)
+    
     console.log('in log provider!')
     const getLogs = () => {
-        fetch(`http://localhost:8000/api/v1/projects/logs/${props.project_id}`, {
+        fetch(`${baseURL}/projects/logs/${props.project_id}`, {
             credentials: 'include'
         })
         .then((res) => res.json())

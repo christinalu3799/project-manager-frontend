@@ -8,14 +8,11 @@ const ProjectCard = (props) => {
     const [projects, setProjects] = useContext(ProjectContext)
 
     const getShowProject = (id) => {
-        console.log('id: ', id)
         // setShowId(id)
         // console.log(showId)
         props.setShowProject(projects.find(project => project.id === id))
     }
-    console.log('here!')
     if (projects !== null) {
-        console.log('inside return!')
         return (
             <>
                 {projects.map((project => {

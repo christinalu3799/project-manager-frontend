@@ -18,6 +18,18 @@ import CompletedProjects from './components/CompletedProjects'
 import DeletedProjects from './components/DeletedProjects';
 import Show from './pages/Show'
 // ==================================================================================
+
+let baseURL = ''
+
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:8000/api/v1'
+} else {
+    baseURL = 'process.env.REACT_APP_BACKEND_URL'
+}
+
+
+console.log('baseURL: ', baseURL)
+
 const App = () => {
     const navigate = useNavigate()
 
@@ -26,7 +38,7 @@ const App = () => {
     const [registerSuccess, setRegister] = useState(null)
     const register = (e) => {
         e.preventDefault()
-        fetch('http://localhost:8000/api/v1/users/register', {
+        fetch(`${baseURL}/users/register`, {
             method: 'POST',
             body: JSON.stringify({
                 username: e.target.username.value,
@@ -58,7 +70,7 @@ const App = () => {
         console.log(e.target.username.value)
         console.log(e.target.email.value)
         console.log(e.target.password.value)
-        fetch('http://localhost:8000/api/v1/users/login', {
+        fetch(`${baseURL}/users/login`, {
             method: 'POST',
             body: JSON.stringify({
                 username: e.target.username.value,
@@ -86,7 +98,7 @@ const App = () => {
     // logout =======================================================================
     const logout = (e) => {
         e.preventDefault()
-        fetch('http://localhost:8000/api/v1/users/logout')
+        fetch(`${baseURL}/users/logout`)
         console.log('successfully logged out')
     }
     // show page project id =========================================================
@@ -132,7 +144,7 @@ const App = () => {
 
                 <Routes>
                     <Route path='/index' element={<Index user={user} setShowProject={setShowProject} showProject={showProject}/>} />
-                    <Route path='/new-project' element={<NewProject/>} />
+                    <Route path='/new-project' element={<NewProject user={user}/>} />
 
                     <Route path='/completed-projects' element={<CompletedProjects/>}/>
                     <Route path='/deleted-projects' element={<DeletedProjects/>}/>
