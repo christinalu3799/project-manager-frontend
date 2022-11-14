@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 console.log('baseURL: ', baseURL)
-
+console.log('IN APP.JS - process.env = ', process.env)
 const App = () => {
     const navigate = useNavigate()
 
