@@ -27,7 +27,6 @@ if (process.env.NODE_ENV === 'development') {
     baseURL = 'process.env.REACT_APP_BACKEND_URL'
 }
 
-
 console.log('baseURL: ', baseURL)
 
 const App = () => {
@@ -70,6 +69,7 @@ const App = () => {
         console.log(e.target.username.value)
         console.log(e.target.email.value)
         console.log(e.target.password.value)
+        console.log(`${baseURL}/users/login`)
         fetch(`${baseURL}/users/login`, {
             method: 'POST',
             body: JSON.stringify({
