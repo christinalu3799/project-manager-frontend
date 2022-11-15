@@ -23,7 +23,7 @@ export const LogProvider = (props) => {
     // this hook is similar to component did mount
     useEffect(() => {
         getLogs()
-    }, [])
+    }, [logs])
 
     return  <LogContext.Provider value={[logs, setLogs]}>
                 {props.children}

@@ -27,7 +27,6 @@ const ShowTabs = (props) => {
         console.log('new task to add: ', task)
         fetch(`${baseURL}/projects/tasks/${props.showProject.id}`, {
             method: 'POST',
-
             body: JSON.stringify(
                 task
             ),
@@ -38,6 +37,30 @@ const ShowTabs = (props) => {
         })
         .then(res => {
             setTask({task: ''})
+        })
+    }
+    const [log, setLog] = useState({log: ''})
+
+    const handleAddLog = (e) => {
+        e.preventDefault()
+        setLog({...log, log: e.target.value})
+    }
+
+    const handleSubmitLog = (e) => {
+        e.preventDefault()
+        console.log('new log to add: ', log)
+        fetch(`${baseURL}/projects/logs/${props.showProject.id}`, {
+            method: 'POST',
+            body: JSON.stringify(
+                log
+            ),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+        .then(res => {
+            setLog({log: ''})
         })
     }
    
@@ -80,6 +103,22 @@ const ShowTabs = (props) => {
                         <Tasks />
                     </Tab>
                     <Tab eventKey="contact" title="Log">
+                        <div>
+                            <form onSubmit={handleSubmitLog}>
+                                <input 
+                                    type="text" 
+                                    id="log" 
+                                    value={log.log}
+                                    placeholder="Log"
+                                    onChange={handleAddLog}
+                                />
+                                <input 
+                                    type="submit"
+                                    value="Log"
+                                />
+                            </form>
+                        </div>
+
                         <Logs />
                     </Tab>
                 </Tabs>
