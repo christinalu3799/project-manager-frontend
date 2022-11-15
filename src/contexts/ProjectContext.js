@@ -11,7 +11,7 @@ export const ProjectProvider = (props) => {
     const [projects, setProjects] = useState(null)
 
     const getProjects = () => {
-        fetch(`${baseURL}/projects/`, {
+        fetch(`${baseURL}/projects`, {
             credentials: 'include'
         })
         .then((res) => res.json())
