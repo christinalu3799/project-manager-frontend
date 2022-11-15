@@ -5,10 +5,11 @@ const Tasks = () => {
     const [tasks, setTasks] = useContext(TaskContext)
     if (tasks !== null) {
         return (
-            <div>
+            <div> 
                 {tasks.map((task) => {
                     return (
                         <div key={task.id}>
+                            <input type='checkbox'/>
                             <p>{task.task}</p>
                         </div>
                     )

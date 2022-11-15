@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../stylesheets/NewProject.css'
+import { useNavigate } from 'react-router-dom'
 
 let baseURL
 // process.env.NODE_ENV = 'production'
@@ -10,6 +11,7 @@ process.env.REACT_APP_NODE_ENV === 'development'
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 const NewProjectForm = () => {
+    const navigate = useNavigate()
 
     // const [projects, setProjects] = useContext(ProjectContext)
     const [newProject, setNewProject] = useState({
@@ -22,7 +24,6 @@ const NewProjectForm = () => {
     const handleChange = (e) => {
         e.preventDefault() 
         setNewProject({...newProject, [e.target.id]: e.target.value})
-        console.log(newProject)
     }
 
     const handleSubmit = (e) => {
@@ -40,7 +41,10 @@ const NewProjectForm = () => {
             },
             credentials: 'include'
         })
-        .then (res => console.log(res.json()))
+        .then (res => {
+            console.log(res.json())
+            navigate('/index')
+        })
     }
     return (
         <Form onSubmit={handleSubmit} className='new-project-form'>

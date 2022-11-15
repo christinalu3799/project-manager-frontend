@@ -18,7 +18,6 @@ import Show from './pages/Show'
 // ==================================================================================
 
 let baseURL
-// process.env.NODE_ENV = 'production'
 process.env.REACT_APP_NODE_ENV === 'development'
 ? (baseURL = process.env.REACT_APP_DEV_URL)
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    

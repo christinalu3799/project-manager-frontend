@@ -7,9 +7,40 @@ import StatusIcons from './StatusIcons'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
 
+
+let baseURL
+process.env.REACT_APP_NODE_ENV === 'development'
+? (baseURL = process.env.REACT_APP_DEV_URL)
+: (baseURL = process.env.REACT_APP_BACKEND_URL)    
+
 const ShowTabs = (props) => {
     const [key, setKey] = useState('home');
+    const [task, setTask] = useState({task: ''})
 
+    const handleAddTask = (e) => {
+        e.preventDefault()
+        setTask({...task, task: e.target.value})
+    }
+
+    const handleSubmitTask = (e) => {
+        e.preventDefault()
+        console.log('new task to add: ', task)
+        fetch(`${baseURL}/projects/tasks/${props.showProject.id}`, {
+            method: 'POST',
+
+            body: JSON.stringify(
+                task
+            ),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+        .then(res => {
+            setTask({task: ''})
+        })
+    }
+   
     return (
         <LogProvider project_id={props.showProject.id}>
 
@@ -31,6 +62,21 @@ const ShowTabs = (props) => {
                         </div>
                     </Tab>
                     <Tab eventKey="profile" title="Tasks">
+                        <div>
+                            <form onSubmit={handleSubmitTask}>
+                                <input 
+                                    type="text" 
+                                    id="task" 
+                                    value={task.task}
+                                    placeholder="Task"
+                                    onChange={handleAddTask}
+                                />
+                                <input 
+                                    type="submit"
+                                    value="Add Task"
+                                />
+                            </form>
+                        </div>
                         <Tasks />
                     </Tab>
                     <Tab eventKey="contact" title="Log">
