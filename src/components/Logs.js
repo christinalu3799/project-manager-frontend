@@ -8,7 +8,6 @@ const Logs = () => {
                 {logs.map((log) => {
                     return (
                         <div key={log.id}>
-                            <input type='checkbox'/>
                             <p>{log.log}</p>
                         </div>
                     )

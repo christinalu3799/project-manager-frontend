@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import '../stylesheets/ShowTabs.css'
 import Tasks from './Tasks'
+import NewTaskForm from './NewTaskForm'
 import Logs from './Logs'
+import NewLogForm from './NewLogForm'
 import StatusIcons from './StatusIcons'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
-
 
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -16,58 +17,6 @@ process.env.REACT_APP_NODE_ENV === 'development'
 const ShowTabs = (props) => {
     const [key, setKey] = useState('home');
 
-    // ADD TASKS =====================================================================
-    const [task, setTask] = useState({task: ''})
-    
-    const handleAddTask = (e) => {
-        e.preventDefault()
-        setTask({...task, task: e.target.value})
-    }
-    
-    const handleSubmitTask = (e) => {
-        e.preventDefault()
-        console.log('new task to add: ', task)
-        fetch(`${baseURL}/projects/tasks/${props.showProject.id}`, {
-            method: 'POST',
-            body: JSON.stringify(
-                task
-                ),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            })
-            .then(res => {
-                setTask({task: ''})
-            })
-        }
-        
-    // ADD LOGS ======================================================================
-    const [log, setLog] = useState({log: ''})
-    
-    const handleAddLog = (e) => {
-        e.preventDefault()
-        setLog({...log, log: e.target.value})
-    }
-    
-    const handleSubmitLog = (e) => {
-        e.preventDefault()
-        console.log('new log to add: ', log)
-        fetch(`${baseURL}/projects/logs/${props.showProject.id}`, {
-            method: 'POST',
-            body: JSON.stringify(
-                log
-                ),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            })
-            .then(res => {
-                setLog({log: ''})
-            })
-        }
-    // ===============================================================================
     return (
         <LogProvider project_id={props.showProject.id}>
 
@@ -89,40 +38,11 @@ const ShowTabs = (props) => {
                         </div>
                     </Tab>
                     <Tab eventKey="profile" title="Tasks">
-                        <div>
-                            <form onSubmit={handleSubmitTask}>
-                                <input 
-                                    type="text" 
-                                    id="task" 
-                                    value={task.task}
-                                    placeholder="Task"
-                                    onChange={handleAddTask}
-                                />
-                                <input 
-                                    type="submit"
-                                    value="Add Task"
-                                />
-                            </form>
-                        </div>
+                        <NewTaskForm baseURL={baseURL} showProject={props.showProject}/>
                         <Tasks />
                     </Tab>
                     <Tab eventKey="contact" title="Log">
-                        <div>
-                            <form onSubmit={handleSubmitLog}>
-                                <input 
-                                    type="text" 
-                                    id="log" 
-                                    value={log.log}
-                                    placeholder="Log"
-                                    onChange={handleAddLog}
-                                />
-                                <input 
-                                    type="submit"
-                                    value="Log"
-                                />
-                            </form>
-                        </div>
-
+                        <NewLogForm baseURL={baseURL} showProject={props.showProject}/>
                         <Logs />
                     </Tab>
                 </Tabs>

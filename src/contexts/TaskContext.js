@@ -10,7 +10,7 @@ export const TaskProvider = (props) => {
     const [tasks, setTasks] = useState(null)
 
     const getTasks = () => {
-        fetch(`${baseURL}/projects/tasks/${props.project_id}`, {
+        fetch(`${baseURL}/api/v1/projects/tasks/${props.project_id}`, {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -22,9 +22,10 @@ export const TaskProvider = (props) => {
     // this hook is similar to component did mount
     useEffect(() => {
         getTasks()
-    }, [tasks])
+    }, [])
 
-    return  <TaskContext.Provider value={[tasks, setTasks]}>
+    return  <TaskContext.Provider value={[tasks, setTasks, getTasks]   
+                }>
                 {props.children}
             </TaskContext.Provider>
 }

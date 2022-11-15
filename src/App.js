@@ -16,7 +16,6 @@ import CompletedProjects from './components/CompletedProjects'
 import DeletedProjects from './components/DeletedProjects';
 import Show from './pages/Show'
 // ==================================================================================
-
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
 ? (baseURL = process.env.REACT_APP_DEV_URL)
@@ -32,7 +31,7 @@ const App = () => {
     const [registerSuccess, setRegister] = useState(null)
     const register = (e) => {
         e.preventDefault()
-        fetch(`${baseURL}/users/register`, {
+        fetch(`${baseURL}/api/v1/users/register`, {
             method: 'POST',
             body: JSON.stringify({
                 username: e.target.username.value,
@@ -64,8 +63,7 @@ const App = () => {
         // console.log(e.target.username.value)
         // console.log(e.target.email.value)
         // console.log(e.target.password.value)
-        console.log(`${baseURL}/users/login`)
-        fetch(`${baseURL}/users/login`, {
+        fetch(`${baseURL}/api/v1/users/login`, {
             method: 'POST',
             body: JSON.stringify({
                 username: e.target.username.value,
@@ -93,7 +91,7 @@ const App = () => {
     // logout =======================================================================
     const logout = (e) => {
         e.preventDefault()
-        fetch(`${baseURL}/users/logout`)
+        fetch(`${baseURL}/api/v1/users/logout`)
         console.log('successfully logged out')
     }
     // show page project id =========================================================
