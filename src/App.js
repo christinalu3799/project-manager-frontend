@@ -1,7 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState} from 'react';
 import {Route, Routes, useNavigate, Link} from 'react-router-dom';
-import { ProjectProvider  } from './contexts/ProjectContext';
-// import { ProjectContext  } from './contexts/ProjectContext'
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -19,16 +17,14 @@ import DeletedProjects from './components/DeletedProjects';
 import Show from './pages/Show'
 // ==================================================================================
 
-let baseURL = ''
-
-if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:8000/api/v1'
-} else {
-    baseURL = 'process.env.REACT_APP_BACKEND_URL'
-}
+let baseURL
+// process.env.NODE_ENV = 'production'
+process.env.REACT_APP_NODE_ENV === 'development'
+? (baseURL = process.env.REACT_APP_DEV_URL)
+: (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 console.log('baseURL: ', baseURL)
-console.log('IN APP.JS - process.env = ', process.env)
+
 const App = () => {
     const navigate = useNavigate()
 
@@ -66,9 +62,9 @@ const App = () => {
     const [loginSuccess, setLogin] = useState(null)
     const login = (e) => {
         e.preventDefault(e)
-        console.log(e.target.username.value)
-        console.log(e.target.email.value)
-        console.log(e.target.password.value)
+        // console.log(e.target.username.value)
+        // console.log(e.target.email.value)
+        // console.log(e.target.password.value)
         console.log(`${baseURL}/users/login`)
         fetch(`${baseURL}/users/login`, {
             method: 'POST',

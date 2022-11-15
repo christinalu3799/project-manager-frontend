@@ -1,12 +1,10 @@
 import React, { useState, createContext, useEffect } from 'react'
 
-let baseURL = ''
-
-if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:8000/api/v1'
-} else {
-    baseURL = 'process.env.REACT_APP_BACKEND_URL'
-}
+let baseURL
+// process.env.NODE_ENV = 'production'
+process.env.REACT_APP_NODE_ENV === 'development'
+? (baseURL = process.env.REACT_APP_DEV_URL)
+: (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 export const TaskProvider = (props) => {
     
