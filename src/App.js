@@ -98,6 +98,8 @@ const App = () => {
     }
     // show page project id =========================================================
     const [showProject, setShowProject] = useState(null)
+    // deleted projects =============================================================
+    const [deletedProjects, setDeletedProjects] = useState([])
     
 // ==================================================================================
     return (
@@ -138,7 +140,7 @@ const App = () => {
                 </Navbar>
 
                 <Routes>
-                    <Route path='/index' element={<Index user={user} setShowProject={setShowProject} showProject={showProject}/>} />
+                    <Route path='/index' element={<Index user={user} setShowProject={setShowProject} showProject={showProject} deletedProjects={deletedProjects} setDeletedProjects={setDeletedProjects}/>} />
                     <Route path='/new-project' element={<NewProject user={user}/>} />
 
                     <Route path='/completed-projects' element={<CompletedProjects/>}/>

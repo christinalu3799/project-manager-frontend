@@ -7,7 +7,9 @@ const ProjectContainer = (props) => {
         <div className='project-container'>
             <ProjectCard 
                 setShowProject={props.setShowProject}
-                showProject={props.showProject}/>
+                showProject={props.showProject}
+                deletedProjects={props.deletedProjects}
+                setDeletedProjects={props.setDeletedProjects}/>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext} from 'react'
 import { Link } from 'react-router-dom'
 import '../stylesheets/Index.css'
 import { ProjectContext  } from '../contexts/ProjectContext'
@@ -12,12 +12,17 @@ const ProjectCard = (props) => {
         // console.log(showId)
         props.setShowProject(projects.find(project => project.id === id))
     }
+
+    const handleDeleteProject = (project) => {
+        props.setDeletedProjects([...props.deletedProjects, project])
+        console.log(props.deletedProjects)
+    }
     if (projects !== null) {
         return (
             <>
                 {projects.map((project => {
                     return (
-                        <div key={project.id} className='project-card'>
+                        <div key={project.id} className='project-card' onClick={()=>handleDeleteProject(project)}>
 
                             <h3>{project.project_name}</h3>
                             <p>DUE: {project.project_deadline}</p>

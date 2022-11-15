@@ -15,13 +15,15 @@ process.env.REACT_APP_NODE_ENV === 'development'
 
 const ShowTabs = (props) => {
     const [key, setKey] = useState('home');
-    const [task, setTask] = useState({task: ''})
 
+    // ADD TASKS =====================================================================
+    const [task, setTask] = useState({task: ''})
+    
     const handleAddTask = (e) => {
         e.preventDefault()
         setTask({...task, task: e.target.value})
     }
-
+    
     const handleSubmitTask = (e) => {
         e.preventDefault()
         console.log('new task to add: ', task)
@@ -29,23 +31,25 @@ const ShowTabs = (props) => {
             method: 'POST',
             body: JSON.stringify(
                 task
-            ),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        .then(res => {
-            setTask({task: ''})
-        })
-    }
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            .then(res => {
+                setTask({task: ''})
+            })
+        }
+        
+    // ADD LOGS ======================================================================
     const [log, setLog] = useState({log: ''})
-
+    
     const handleAddLog = (e) => {
         e.preventDefault()
         setLog({...log, log: e.target.value})
     }
-
+    
     const handleSubmitLog = (e) => {
         e.preventDefault()
         console.log('new log to add: ', log)
@@ -53,17 +57,17 @@ const ShowTabs = (props) => {
             method: 'POST',
             body: JSON.stringify(
                 log
-            ),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        .then(res => {
-            setLog({log: ''})
-        })
-    }
-   
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            .then(res => {
+                setLog({log: ''})
+            })
+        }
+    // ===============================================================================
     return (
         <LogProvider project_id={props.showProject.id}>
 

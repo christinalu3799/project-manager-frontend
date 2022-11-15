@@ -15,8 +15,9 @@ const Index = (props) => {
                     
                         <ProjectContainer
                             setShowProject={props.setShowProject}
-                            showProject={props.showProject}/>
-    
+                            showProject={props.showProject}
+                            deletedProjects={props.deletedProjects}
+                            setDeletedProjects={props.setDeletedProjects}/>
                     </div>
                 </div>
             </ProjectProvider>
