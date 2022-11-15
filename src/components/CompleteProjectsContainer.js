@@ -9,7 +9,6 @@ const CompleteProjectsContainer = () => {
                 if(project.project_status === 'completed') {
                     return (
                         <div key={project.id}>
-                            
                             <h3>{project.project_name}</h3>
                         </div>
                     )
