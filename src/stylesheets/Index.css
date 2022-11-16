@@ -31,7 +31,7 @@
 }
 .project-card {
     width: 275px;
-    height: 225px;
+    height: fit-content;
     background-color: #EBEBEB;
     margin: 0.5rem;
     padding: 1rem;
