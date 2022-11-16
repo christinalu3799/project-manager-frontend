@@ -39,7 +39,7 @@ const ShowTabs = (props) => {
                     </Tab>
                     <Tab eventKey="profile" title="Tasks">
                         <NewTaskForm baseURL={baseURL} showProject={props.showProject}/>
-                        <Tasks showProject={props.showProject}/>
+                        <Tasks baseURL={baseURL} showProject={props.showProject}/>
                     </Tab>
                     <Tab eventKey="contact" title="Log">
                         <NewLogForm baseURL={baseURL} showProject={props.showProject}/>
