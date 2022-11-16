@@ -12,8 +12,8 @@ import Index from './pages/Index'
 import RegisterUser from './components/RegisterUser';
 import LoginUser from './components/LoginUser';
 import NewProject from './pages/NewProject';
-import CompletedProjects from './components/CompletedProjects'
-import DeletedProjects from './components/DeletedProjects';
+import CompletedProjects from './pages/CompletedProjects'
+import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
 // ==================================================================================
 let baseURL
@@ -141,8 +141,8 @@ const App = () => {
                     <Route path='/index' element={<Index user={user} setShowProject={setShowProject} showProject={showProject} deletedProjects={deletedProjects} setDeletedProjects={setDeletedProjects}/>} />
                     <Route path='/new-project' element={<NewProject user={user}/>} />
 
-                    <Route path='/completed-projects' element={<CompletedProjects/>}/>
-                    <Route path='/deleted-projects' element={<DeletedProjects/>}/>
+                    <Route path='/completed-projects' element={<CompletedProjects user={user}/>}/>
+                    <Route path='/deleted-projects' element={<DeletedProjects user={user}/>}/>
 
                     <Route path='/show/:id' element={<Show showProject={showProject}/>}/>
 

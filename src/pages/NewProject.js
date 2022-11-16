@@ -12,6 +12,14 @@ const NewProject = (props) => {
               </div>
           </ProjectProvider>
         )
+    } else {
+        return (
+            <div className='not-logged-in'>
+                <h4>
+                    Please Register/Login to start tracking your projects!
+                </h4>
+            </div>
+        )
     }
 }
 
