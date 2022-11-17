@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
+import '../stylesheets/Tasks.css'
 
 const Tasks = (props) => {
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
@@ -25,18 +26,19 @@ const Tasks = (props) => {
     }
     if (tasks !== null) {
         return (
-            <div> 
+            <div className='tasks-container'> 
                 {tasks.map((task) => {
                     return (
-                        <div key={task.id}>
+                        <div key={task.id} className='task'>
                             <input 
                                 type='checkbox' 
                                 id='is_complete' 
                                 value={task.is_complete} 
                                 onChange={(e)=>handleCheckedTask(e, task)}
                                 checked={task.is_complete}
+                                className='checkbox'
                                 />
-                            <p>{task.task}</p>
+                            <p className='task-description'>{task.task}</p>
                         </div>
                     )
                 })}

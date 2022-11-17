@@ -132,6 +132,17 @@ const App = () => {
     }
     // show page project id =========================================================
     const [showProject, setShowProject] = useState(null)
+
+    // useEffect(() => {
+    //     localStorage.setItem('showProject', JSON.stringify(showProject.project_name))
+    //     // const currentProject = localStorage.getItem('showProject')
+    //     // console.log(JSON.parse(currentProject))
+    //     // if (JSON.parse(currentProject) == props.showProject.project_name) {
+    //     //     console.log('hi')
+    //     //     // currentProject = props.showProject.project_name
+    //     //     // localStorage.setItem('showProject', JSON.stringify(props.showProject.project_name))
+    //     // }
+    // }, [])
     // deleted projects =============================================================
     const [deletedProjects, setDeletedProjects] = useState([])
     

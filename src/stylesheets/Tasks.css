@@ -1,0 +1,49 @@
+/* NEW TASK FORM */
+
+.new-task-form-container {
+    display: flex; 
+    width: 100%;
+}
+.new-task-form {
+    display: flex; 
+    align-items: center;
+    width: 100%;
+}
+.new-task-form-input {
+    width: 75%;
+    margin: 1rem; 
+    padding: 0.5rem;
+}
+.new-task-form-btn {
+    height: 50px;
+}
+.tasks-container {
+    width: 100%;
+    height: fit-content;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    margin: 1rem;
+}
+
+.tasks-container p.task-description {
+    margin: 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .new-task-form-input {
+        width: 60%;
+    }
+    .new-task-form-btn {
+        font-size: smaller;
+    }
+}
+

@@ -18,6 +18,7 @@ const Show = (props) => {
             </div>
 
     )
+
 }
 
 export default Show

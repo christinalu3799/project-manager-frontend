@@ -42,7 +42,6 @@ const NewProjectForm = () => {
             credentials: 'include'
         })
         .then (res => {
-            console.log(res.json())
             navigate('/index')
         })
     }

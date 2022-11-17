@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
-
+import '../stylesheets/Tasks.css'
+import Button from 'react-bootstrap/Button'
 const NewTaskForm = (props) => {
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
 
@@ -28,19 +29,21 @@ const NewTaskForm = (props) => {
         })
     }
     return (
-        <div>
-            <form onSubmit={handleSubmitTask}>
+        <div className='new-task-form-container'>
+            <form onSubmit={handleSubmitTask} className='new-task-form'>
                 <input 
                     type="text" 
                     id="task" 
                     value={task.task}
                     placeholder="Task"
                     onChange={handleAddTask}
+                    required
+                    className='new-task-form-input'
                 />
-                <input 
-                    type="submit"
-                    value="Add Task"
-                />
+                    
+                <Button variant='success' type="submit" className='new-task-form-btn'>
+                    Add Task
+                </Button>
             </form>
         </div>
     )
