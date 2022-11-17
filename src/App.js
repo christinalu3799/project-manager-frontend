@@ -50,7 +50,7 @@ const App = () => {
             headers: {
                 'Content-Type': 'application/json'
             }, 
-            credentials: 'include'
+            credentials: 'same-origin'
         })
         .then (res => res.json())
         .then (resJson => {
@@ -97,7 +97,7 @@ const App = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
+            credentials: 'same-origin'
         })
         .then (res => res.json())
         .then (resJson => {
