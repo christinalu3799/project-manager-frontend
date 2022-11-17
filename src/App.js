@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {Route, Routes, useNavigate, Link} from 'react-router-dom';
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +15,7 @@ import NewProject from './pages/NewProject';
 import CompletedProjects from './pages/CompletedProjects'
 import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
+import NotFound from './pages/NotFound'
 // ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -25,9 +26,17 @@ console.log('baseURL: ', baseURL)
 
 const App = () => {
     const navigate = useNavigate()
+    
+    const [user, setUser] = useState()
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('user')
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser)
+            setUser(foundUser)
+        }
 
+    }, [])
     // register =====================================================================
-    const [user, setUser] = useState(null)
     const [registerSuccess, setRegister] = useState(null)
     const register = (e) => {
         e.preventDefault()
@@ -61,12 +70,12 @@ const App = () => {
     const login = (e) => {
         e.preventDefault(e)
         // console.log(e.target.username.value)
-        // console.log(e.target.email.value)
-        // console.log(e.target.password.value)
+        console.log(e.target.email.value)
+        console.log(e.target.password.value)
         fetch(`${baseURL}/api/v1/users/login`, {
             method: 'POST',
             body: JSON.stringify({
-                username: e.target.username.value,
+                // username: e.target.username.value,
                 email: e.target.email.value,
                 password: e.target.password.value
             }),
@@ -77,11 +86,21 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
+            console.log(resJson)
+
+            fetch(`${baseURL}/api/v1/users/get_all_users`, {
+                credentials: 'include'
+            })
+            .then(res => res.json())
+            .then(resUserJson => {
+                setUser(resUserJson.data[0].username)
+                localStorage.setItem('user', JSON.stringify(resUserJson.data[0].username))
+            })
+
             if (resJson.status.code === 401) {
                 console.log(resJson.status.message)
                 setLogin(false)
             } else {
-                setUser(e.target.username.value)
                 setLogin(true)
                 navigate('/index')
             }
@@ -91,8 +110,12 @@ const App = () => {
     // logout =======================================================================
     const logout = (e) => {
         e.preventDefault()
+        localStorage.clear()
+        setUser()
         fetch(`${baseURL}/api/v1/users/logout`)
         console.log('successfully logged out')
+        console.log(user)
+        navigate('/login')
     }
     // show page project id =========================================================
     const [showProject, setShowProject] = useState(null)
@@ -109,9 +132,6 @@ const App = () => {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-                                
-                                    {/* <Link to="/new-project" className='nav-item'>Add New Project</Link> */}
-                                
                                 <Nav.Link as={Link} to="/new-project">Add New Project</Nav.Link>
                                 <NavDropdown title="See More">
                                     <NavDropdown.Item as={Link} to="/completed-projects">View Completed Projects</NavDropdown.Item>
@@ -119,7 +139,7 @@ const App = () => {
                                 </NavDropdown>
                             </Nav>
                             <Nav>
-                                {user === null ? 
+                                {user === undefined ? 
                                     <>
                                         <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                         <Nav.Link as={Link} to="/login">Login</Nav.Link>
@@ -127,8 +147,7 @@ const App = () => {
                                     :
                                     <>
                                         <NavDropdown title={`Welcome back ${user}!`}>
-                                            {/* <Navbar.Text>Welcome back {user}!</Navbar.Text> */}
-                                            <NavDropdown.Item as={Link} to="/" onClick={() => logout()}>Logout</NavDropdown.Item>
+                                            <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                         </NavDropdown>
                                     </>
                                 }
@@ -149,6 +168,7 @@ const App = () => {
                     <Route path='/register' element={<RegisterUser register={register} registerSuccess={registerSuccess}/>} />
                     <Route path='/' element={<RegisterUser register={register} registerSuccess={registerSuccess}/>} />
                     <Route path='/login' element={<LoginUser login={login} loginSuccess={loginSuccess}/>} />
+                    <Route path='*' element={<NotFound/>}/>
                 </Routes>
             </div>
         // </ProjectProvider>

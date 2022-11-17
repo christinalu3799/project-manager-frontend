@@ -4,7 +4,7 @@ import ProjectContainer from '../components/ProjectContainer'
 import { ProjectProvider  } from '../contexts/ProjectContext';
 
 const Index = (props) => {
-    if (props.user !== null) {
+    if (props.user !== undefined) {
         return (
             <ProjectProvider>
     

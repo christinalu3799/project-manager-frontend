@@ -10,7 +10,7 @@ const RegisterUser = (props) => {
             <input type='text' id='username' placeholder='Username' className='register-input'/>
             <input type='text' id='email' placeholder='Email' className='register-input'/>
             <input type='password' id='password' placeholder='Password' className='register-input'/>
-            {props.registerSuccess === false ? <p>Oops! A user with that email already exists.</p> : console.log('registered successfully!')}
+            {props.registerSuccess === false ? <p>Oops! A user with that email already exists.</p> : null}
             <input type='submit' value='Sign Up' className='register-submit-btn'/>
 
             <p>Already have an account?</p>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DeletedProjects = (props) => {
-    if (props.user !== null) {
+    if (props.user !== undefined) {
         return (
           <h1>DELETED PROJECTS</h1>
         )

@@ -4,8 +4,6 @@ import { TaskContext } from '../contexts/TaskContext'
 const Tasks = (props) => {
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
 
-    const [checked, setChecked] = useState(true)
-
     const handleCheckedTask = (e, task) => {
         let taskToUpdate = {
             task: task.task,

@@ -3,7 +3,7 @@ import { ProjectProvider } from '../contexts/ProjectContext';
 import NewProjectForm from '../components/NewProjectForm';
 import '../stylesheets/NewProject.css'
 const NewProject = (props) => {
-    if(props.user !== null) {
+    if(props.user !== undefined) {
         return (
           <ProjectProvider>
               <div className='new-project'>
