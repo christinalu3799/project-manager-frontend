@@ -7,7 +7,9 @@ process.env.REACT_APP_NODE_ENV === 'development'
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 export const ProjectProvider = (props) => {
+
     const [projects, setProjects] = useState(null)
+    
     const getProjects = () => {
         fetch(`${baseURL}/api/v1/projects/`, {
             credentials: 'include'

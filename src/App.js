@@ -54,18 +54,20 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            
-            // find current user
-            fetch(`${baseURL}/api/v1/users/get_all_users`, {
-                credentials: 'include'
-            })
-            .then(res => res.json())
-            .then(resUserJson => {
-                console.log(resUserJson.data)
-                let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
-                setUser(currentUser.username)
-                localStorage.setItem('user', JSON.stringify(currentUser.username))
-            })
+            console.log(resJson)
+            setUser(resJson.data.username)
+            localStorage.setItem('user', JSON.stringify(resJson.data.username))
+            // // find current user
+            // fetch(`${baseURL}/api/v1/users/get_all_users`, {
+            //     credentials: 'include'
+            // })
+            // .then(res => res.json())
+            // .then(resUserJson => {
+            //     console.log(resUserJson.data)
+            //     let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
+            //     setUser(currentUser.username)
+            //     localStorage.setItem('user', JSON.stringify(currentUser.username))
+            // })
 
             if (resJson.status.code === 401) {
                 console.log(resJson.status.message)
@@ -99,18 +101,20 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            
+            console.log(resJson)
+            setUser(resJson.data.username)
+            localStorage.setItem('user', JSON.stringify(resJson.data.username))
             // find current user
-            fetch(`${baseURL}/api/v1/users/get_all_users`, {
-                credentials: 'include'
-            })
-            .then(res => res.json())
-            .then(resUserJson => {
-                console.log(resUserJson.data)
-                let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
-                setUser(currentUser.username)
-                localStorage.setItem('user', JSON.stringify(currentUser.username))
-            })
+            // fetch(`${baseURL}/api/v1/users/get_all_users`, {
+            //     credentials: 'include'
+            // })
+            // .then(res => res.json())
+            // .then(resUserJson => {
+            //     console.log(resUserJson.data)
+            //     let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
+            //     setUser(currentUser.username)
+            //     localStorage.setItem('user', JSON.stringify(currentUser.username))
+            // })
 
             if (resJson.status.code === 401) {
                 console.log(resJson.status.message)
