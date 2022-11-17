@@ -8,11 +8,10 @@ const ProjectCard = (props) => {
     const [projects, setProjects] = useContext(ProjectContext)
 
     const getShowProject = (id) => {
-        // setShowId(id)
-        // console.log(showId)
         props.setShowProject(projects.find(project => project.id === id))
     }
-
+    
+    // still working on this
     const handleDeleteProject = (project) => {
         props.setDeletedProjects([...props.deletedProjects, project])
         console.log(props.deletedProjects)

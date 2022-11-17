@@ -54,6 +54,19 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
+            
+            // find current user
+            fetch(`${baseURL}/api/v1/users/get_all_users`, {
+                credentials: 'include'
+            })
+            .then(res => res.json())
+            .then(resUserJson => {
+                console.log(resUserJson.data)
+                let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
+                setUser(currentUser.username)
+                localStorage.setItem('user', JSON.stringify(currentUser.username))
+            })
+
             if (resJson.status.code === 401) {
                 console.log(resJson.status.message)
                 setRegister(false)
@@ -86,15 +99,17 @@ const App = () => {
         })
         .then (res => res.json())
         .then (resJson => {
-            console.log(resJson)
-
+            
+            // find current user
             fetch(`${baseURL}/api/v1/users/get_all_users`, {
                 credentials: 'include'
             })
             .then(res => res.json())
             .then(resUserJson => {
-                setUser(resUserJson.data[0].username)
-                localStorage.setItem('user', JSON.stringify(resUserJson.data[0].username))
+                console.log(resUserJson.data)
+                let currentUser = resUserJson.data.find(user => user.email === e.target.email.value)
+                setUser(currentUser.username)
+                localStorage.setItem('user', JSON.stringify(currentUser.username))
             })
 
             if (resJson.status.code === 401) {
@@ -113,8 +128,6 @@ const App = () => {
         localStorage.clear()
         setUser()
         fetch(`${baseURL}/api/v1/users/logout`)
-        console.log('successfully logged out')
-        console.log(user)
         navigate('/login')
     }
     // show page project id =========================================================
