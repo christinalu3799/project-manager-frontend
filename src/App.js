@@ -154,10 +154,10 @@ const App = () => {
                     <Container className='nav-container'>
                         <Navbar.Brand as={Link} to="/index">Project Manager</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">
+                        <Navbar.Collapse id="responsive-navbar-nav" className='custom-nav'>
                             <Nav className="me-auto">
                                 <Nav.Link as={Link} to="/new-project">Add New Project</Nav.Link>
-                                <NavDropdown title="See More">
+                                <NavDropdown title="See More" className='custom-nav-dropdown'>
                                     <NavDropdown.Item as={Link} to="/completed-projects">View Completed Projects</NavDropdown.Item>
                                     <NavDropdown.Item as={Link} to="/deleted-projects">View Deleted Projects</NavDropdown.Item>
                                 </NavDropdown>
@@ -170,7 +170,7 @@ const App = () => {
                                     </>
                                     :
                                     <>
-                                        <NavDropdown title={`Welcome back ${user}!`}>
+                                        <NavDropdown title={`Welcome back ${user}!`} className='custom-nav-dropdown'>
                                             <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                         </NavDropdown>
                                     </>

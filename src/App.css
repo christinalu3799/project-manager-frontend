@@ -7,3 +7,16 @@
     text-decoration: none;
 }
 
+
+@media only screen and (max-width: 1000px) {
+    .custom-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .custom-nav-dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
