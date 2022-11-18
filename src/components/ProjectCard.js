@@ -1,39 +1,32 @@
 import React, { useContext} from 'react'
 import { Link } from 'react-router-dom'
 import '../stylesheets/Index.css'
-import { ProjectContext  } from '../contexts/ProjectContext'
 import StatusIcons from './StatusIcons'
-
+import Show from '../pages/Show'
 const ProjectCard = (props) => {
-    const [projects, setProjects] = useContext(ProjectContext)
-
-    const getShowProject = (id) => {
-        props.setShowProject(projects.find(project => project.id === id))
-    }
+    // const getShowProject = (id) => {
+    //     props.setShowProject(props.projects.find(project => project.id === id))
+    // }
     
     // still working on this
-    const handleDeleteProject = (project) => {
-        props.setDeletedProjects([...props.deletedProjects, project])
-        console.log(props.deletedProjects)
-    }
-    if (projects !== null) {
+    // const handleDeleteProject = (project) => {
+    //     props.setDeletedProjects([...props.deletedProjects, project])
+    //     console.log(props.deletedProjects)
+    // }
+    // console.log(props.projects)
         return (
-            <>
-                {projects.map((project => {
-                    return (
-                        <div key={project.id} className='project-card' onClick={()=>handleDeleteProject(project)}>
 
-                            <h3>{project.project_name}</h3>
-                            <p>DUE: {project.project_deadline}</p>
-                            <p className='truncate'>{project.project_description}</p>
-                            <StatusIcons status={project.project_status} />
-                            <Link to={`/show/${project.id}`} onClick={()=>{getShowProject(project.id)}}>Show Details</Link>
-                        </div>
-                    )
-                }))}  
-            </>
+        <div className='project-card'>
+
+            <h3>{props.project.project_name}</h3>
+            <p>DUE: {props.project.project_deadline}</p>
+            <p className='truncate'>{props.project.project_description}</p>
+           <StatusIcons status={props.project.project_status} />
+            <Link to={`/show/${props.project.id}`} onClick={()=>{props.setShowProject(props.project)}}>Show Details</Link> 
+        </div>
+
         )
-    }
+    
 }
 
 export default ProjectCard

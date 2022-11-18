@@ -10,6 +10,7 @@ export const TaskProvider = (props) => {
     const [tasks, setTasks] = useState(null)
 
     const getTasks = () => {
+        console.log('calling getTasks()')
         fetch(`${baseURL}/api/v1/projects/tasks/${props.project_id}`, {
             credentials: 'include'
         })

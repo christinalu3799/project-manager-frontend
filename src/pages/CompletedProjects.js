@@ -1,14 +1,13 @@
 import React from 'react'
-import { ProjectProvider  } from '../contexts/ProjectContext';
 import CompleteProjectsContainer from '../components/CompleteProjectsContainer';
 
 const CompletedProjects = (props) => {
     if (props.user !== undefined) {
         return (
-            <ProjectProvider>
+            <>
                 <h1>COMPLETED PROJECTS</h1>
                 <CompleteProjectsContainer />
-            </ProjectProvider>
+            </>
         )
     } else {
         return (

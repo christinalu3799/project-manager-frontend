@@ -8,6 +8,7 @@ const NewTaskForm = (props) => {
     const [task, setTask] = useState({task: ''})
     
     const handleAddTask = (e) => {
+        getTasks()
         e.preventDefault()
         setTask({...task, task: e.target.value})
     }

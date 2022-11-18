@@ -13,7 +13,6 @@ process.env.REACT_APP_NODE_ENV === 'development'
 const NewProjectForm = () => {
     const navigate = useNavigate()
 
-    // const [projects, setProjects] = useContext(ProjectContext)
     const [newProject, setNewProject] = useState({
         project_name: '',
         project_deadline: '',

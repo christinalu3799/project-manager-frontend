@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
-import { ProjectContext  } from '../contexts/ProjectContext'
 
-const CompleteProjectsContainer = () => {
-    const [projects, setProjects] = useContext(ProjectContext)
-    if (projects != null) {
+const CompleteProjectsContainer = (props) => {
+    if (props.projects != null) {
         return (
             <div>
-                {projects.map(project => {
+                {props.projects.map(project => {
                     if(project.project_status === 'completed') {
                         return (
                             <div key={project.id}>
