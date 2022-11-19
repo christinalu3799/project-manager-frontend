@@ -38,7 +38,7 @@ const App = () => {
 
     const getProjects = () => {
         console.log('----------calling getProjects() in App.js')
-        fetch(`${baseURL}/api/v1/projects/`, {
+        fetch(`${baseURL}/api/v1/projects`, {
             credentials: 'include'
         })
         .then((res) => res.json())

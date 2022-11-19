@@ -29,7 +29,7 @@ const NewProjectForm = () => {
         e.preventDefault()
         console.log(newProject)
         console.log('submitted!')
-        fetch(`${baseURL}/api/v1/projects/`, {
+        fetch(`${baseURL}/api/v1/projects`, {
             method: 'POST',
 
             body: JSON.stringify(
