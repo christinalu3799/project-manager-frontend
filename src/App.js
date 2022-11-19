@@ -9,9 +9,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 // import components ================================================================
-import Index from './pages/Index'
+import Index from './pages/Index';
 import ProjectCard from './components/ProjectCard'
-
 import RegisterUser from './components/RegisterUser';
 import LoginUser from './components/LoginUser';
 import NewProject from './pages/NewProject';
@@ -29,16 +28,21 @@ process.env.REACT_APP_NODE_ENV === 'development'
 console.log('baseURL: ', baseURL)
 
 const App = () => {
+    console.log('------------------RENDERING APP.JS----------------')
     const navigate = useNavigate()
     
     const [user, setUser] = useState()
     
     // get all projects =============================================================
     const [projects, setProjects] = useState(null)
-
+    let GET_URL 
+    process.env.REACT_APP_NODE_ENV === 'development'
+    ? (GET_URL = `${baseURL}/api/v1/projects/`)
+    : (GET_URL = `${baseURL}/api/v1/projects`)
+    // console.log('GET URL: ',GET_URL)
     const getProjects = () => {
         console.log('----------calling getProjects() in App.js')
-        fetch(`${baseURL}/api/v1/projects`, {
+        fetch(GET_URL, {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -123,10 +127,9 @@ const App = () => {
         navigate('/login')
     }
     // show page project id =========================================================
-    const currentProject = JSON.parse(localStorage.getItem('showProject'))
-    console.log('CURRENT PROJECT ----- HERE IN APP -----:', currentProject)
+    // const currentProject = JSON.parse(localStorage.getItem('showProject'))
 
-    const [showProject, setShowProject] = useState(null)
+    // const [showProject, setShowProject] = useState(null)
     // update project ===============================================================
     
     const [projectToUpdate, setProjectToUpdate] = useState({
@@ -139,16 +142,16 @@ const App = () => {
     const updateProject = (id) => {
 
         console.log('----IN updateProject in App.js')
-        
-        setProjects((prev) => {
-            return prev.map((p) => {
-                if (p.id === id) {
-                    return projectToUpdate
-                } else {
-                    return p
-                }
-            })
+        let copyProjects = [...projects]
+        console.log('COPY OF PROJECTS: ', copyProjects)
+        copyProjects.map((p) => {
+            if (p.id === id) {
+                return projects.find(project => project.id == id)
+            } else {
+                return p
+            }
         })
+        setProjects(copyProjects)
         getProjects()
         // window.location.reload(true)
         console.log(projects)
@@ -165,12 +168,13 @@ const App = () => {
             const foundUser = JSON.parse(loggedInUser)
             setUser(foundUser)
         }
-        if (currentProject) {
-            setShowProject(currentProject)
-        }
+        // if (currentProject) {
+        //     setShowProject(currentProject)
+        // }
 
     }, [])
     // ==================================================================================
+    // if (user !== undefined && projects !== null) {
     return (
         <div className='main'>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -204,13 +208,12 @@ const App = () => {
             </Navbar>
 
             <Routes>
-                <Route path='/index' element={<Index 
-                    user={user} 
+                {/* HOME PAGE/PROJECT DASHBOARD */}
+                <Route path='/index' element={<Index
+                    user={user}
                     projects={projects}
-                    setShowProject={setShowProject} 
-                    showProject={showProject} 
-                    deletedProjects={deletedProjects} 
-                    setDeletedProjects={setDeletedProjects}/>} />
+                    // setShowProject={setShowProject}
+                    />}/>
 
                 <Route path='/new-project' element={<NewProject 
                     user={user}/>} />
@@ -225,9 +228,9 @@ const App = () => {
                     projects={projects}
                     setProjects={setProjects}
                     getProjects={getProjects}
+                    // showProject={showProject} 
+                    // setShowProject={setShowProject}
                     updateProject={updateProject}
-                    showProject={showProject} 
-                    setShowProject={setShowProject}
                     projectToUpdate={projectToUpdate}
                     setProjectToUpdate={setProjectToUpdate}/>}/>
 
@@ -247,13 +250,13 @@ const App = () => {
 
             </Routes>
             
-
             
 
 
         </div>
 
-    );
+    )
+// }
 }
 
 export default App;

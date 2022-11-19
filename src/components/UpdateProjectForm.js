@@ -15,26 +15,26 @@ const UpdateProjectForm = (props) => {
         props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value})
     }
 
-    const handleUpdateProject = () => {
-        // e.preventDefault() 
-        fetch(`${baseURL}/api/v1/projects/${props.showProject.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(
-                props.projectToUpdate
-            ),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
+    // const handleUpdateProject = (e) => {
+    //     e.preventDefault() 
+    //     fetch(`${baseURL}/api/v1/projects/${props.showProject.id}`, {
+    //         method: 'PUT',
+    //         body: JSON.stringify(
+    //             props.projectToUpdate
+    //         ),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         credentials: 'include'
+    //     })
         
-            props.updateProject(props.showProject.id)
-            props.setIsEditing(false)
-    }
+    //         props.updateProject(props.showProject.id)
+    //         props.setIsEditing(false)
+    // }
 
     return (
         <div>
-            <Form onSubmit={handleUpdateProject} className='update-project-form'>
+            {/* <Form onSubmit={handleUpdateProject} className='update-project-form'>
                 <Form.Group className="mb-3">
                     <Form.Control 
                         type="text" 
@@ -79,7 +79,7 @@ const UpdateProjectForm = (props) => {
                 <Button variant="secondary" onClickCapture={() => props.setIsEditing()}>
                     Discard
                 </Button>
-            </Form>
+            </Form> */}
      
         </div>
   )
