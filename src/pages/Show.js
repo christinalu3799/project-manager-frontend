@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import '../stylesheets/Show.css'
 import '../stylesheets/ShowTabs.css'
@@ -6,14 +6,12 @@ import '../stylesheets/NewProject.css'
 import StatusIcons from '../components/StatusIcons'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-
 import Tasks from '../components/Tasks'
 import NewTaskForm from '../components/NewTaskForm'
 import Logs from '../components/Logs'
 import NewLogForm from '../components/NewLogForm'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
-import { useLocation } from 'react-router-dom'
 
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -22,44 +20,24 @@ process.env.REACT_APP_NODE_ENV === 'development'
 
 const Show = (props) => {
     console.log('------------------RENDERING SHOW.JS----------------')
-    // const currentProject = JSON.parse(localStorage.getItem('showProject'))
-    const [id, setId] = useState(props.showId)
-    const [showProject, setShowProject] = useState(props.projects.find(project => project.id === id))
-    const location = useLocation()
-    // const id = location.state.id
     const [key, setKey] = useState('home');
     const [isEditing, setIsEditing] = useState(false)
+    const id = props.showId
 
-    // find id of current project
-    // if (myId) {
-        //     setId(myId)
-        // } 
-        
-        
-        // get project based on id
-        // const showProject = props.projects.find(project => project.id === id)
-        // save id and project to local storage
-        localStorage.setItem('projectId', JSON.stringify(id))
-        localStorage.setItem('showProject', JSON.stringify(showProject))
-        
-        useEffect(() => {
-            // setId(location.state.id)
-            if (props.showId) {
-                setId(props.showId)
-            }
-            // const myId = localStorage.getItem('projectId')
-            // console.log(myId)
-            // if (myId !== null) {
-            //     setId(JSON.parse(myId))
-            // }
-            // console.log(JSON.parse(myId))
-            setShowProject(props.projects.find(project => project.id === id))
-            
-        },[])
-
+    // load project
+    let showProject
+    try {
+        showProject = props.projects.find(project => project.id === id)
+    } catch (error) {
+        console.log('oops!')
+        console.log('here is projects', props.projects)
+    }
+   
+    localStorage.setItem('showProject', JSON.stringify(showProject))
+    localStorage.setItem('showId', JSON.stringify(id))
+    // handle updating project =====================================================================
     const handleEditProject = () => {
         setIsEditing(true)
-        console.log('hitting me!')
         props.setProjectToUpdate({
             project_name: showProject.project_name,
             project_deadline: showProject.project_deadline,
@@ -67,28 +45,31 @@ const Show = (props) => {
             project_status: showProject.project_status
         })
     }
-
+    
     const handleChangeProject = (e) => {
         e.preventDefault()
         props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value})
     }
     
-    const handleUpdateProject = async (e) => {
+    const handleUpdateProject = (e) => {
         e.preventDefault() 
-        await fetch(`${baseURL}/api/v1/projects/${id}`, {
+        fetch(`${baseURL}/api/v1/projects/${id}`, {
             method: 'PUT',
             body: JSON.stringify(
                 props.projectToUpdate
-            ),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        props.updateProject(id)
-        setIsEditing(false)
-    }
-    // need to fetch all tasks associated with this project
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            // call getProjects() from App.js to re-render state at top level
+            props.getProjects()
+            props.updateProject(id)
+            setIsEditing(false)
+        }
+    // =============================================================================================
+        
     if (showProject != null ) {
         return (
                 <div className='show'>

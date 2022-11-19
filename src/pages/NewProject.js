@@ -8,7 +8,8 @@ const NewProject = (props) => {
             <div className='new-project-container'>
                 <div className='new-project'>
                     <h1>Create New Project</h1>
-                    <NewProjectForm />
+                    <NewProjectForm 
+                        getProjects={props.getProjects}/>
                 </div>
             </div>
         )

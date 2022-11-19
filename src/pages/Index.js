@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProjectCard from '../components/ProjectCard'
 
 const Index = (props) => {
     console.log('--------RENDERING INDEX.JS---------')
-    // const [showProject, setShowProject] = useState(null)
+
     if (props.user !== undefined && props.projects !== null) {
         return (
         <div className='index'>
@@ -15,26 +15,23 @@ const Index = (props) => {
                         <ProjectCard 
                             key={project.id}
                             project={project}
-                            // setShowProject={props.setShowProject}
+                            showId={props.showId}
                             setShowId={props.setShowId}
-
-                        //     // deletedProjects={props.deletedProjects}
-                        //     // setDeletedProjects={props.setDeletedProjects}
                         />
-                
                     )
-        
                 })}
                 </div>
             </div>
         </div>
         )
     } else {
-        <div className='not-logged-in'>
-            <h4>
-                Please Register/Login to start tracking your projects!
-            </h4>
-        </div>
+        return(
+            <div className='not-logged-in'>
+                <h4>
+                    Please Register/Login to start tracking your projects!
+                </h4>
+            </div>
+        )
     }
 }
 

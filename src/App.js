@@ -39,19 +39,16 @@ const App = () => {
     process.env.REACT_APP_NODE_ENV === 'development'
     ? (GET_URL = `${baseURL}/api/v1/projects/`)
     : (GET_URL = `${baseURL}/api/v1/projects/`)
-    // console.log('GET URL: ',GET_URL)
+
     const getProjects = () => {
-        console.log('----------calling getProjects() in App.js')
         fetch(GET_URL, {
             credentials: 'include'
         })
         .then((res) => res.json())
         .then(resJson => {
             setProjects(resJson.data)
-            console.log('project now set in App.js!')
         })
     }
-  
     // register =====================================================================
     const [registerSuccess, setRegister] = useState(null)
     const register = (e) => {
@@ -83,7 +80,6 @@ const App = () => {
             }
         })
     }
-    
     // login ========================================================================
     const [loginSuccess, setLogin] = useState(null)
     const login = (e) => {
@@ -117,7 +113,6 @@ const App = () => {
             }
         })
     }
-
     // logout =======================================================================
     const logout = (e) => {
         e.preventDefault()
@@ -127,11 +122,8 @@ const App = () => {
         navigate('/login')
     }
     // show page project id =========================================================
-    // const currentProject = JSON.parse(localStorage.getItem('showProject'))
-    // const [showProject, setShowProject] = useState(null)
-
     const [showId, setShowId] = useState(null)
-    
+    const currentShowId = JSON.parse(localStorage.getItem('showId'))
     // update project ===============================================================
     
     const [projectToUpdate, setProjectToUpdate] = useState({
@@ -142,11 +134,16 @@ const App = () => {
     })
 
     const updateProject = (id) => {
-        console.log('----IN updateProject in App.js')
+        let copyProjects = [...projects]
+        copyProjects.map((p) => {
+            if (p.id === id) {
+                return projects.find(project => project.id == id)
+            } else {
+                return p
+            }
+        })
+        setProjects(copyProjects)
         getProjects()
-        // window.location.reload(true)
-        console.log(projects)
-    
     }
 
     // deleted projects =============================================================
@@ -158,20 +155,16 @@ const App = () => {
             const foundUser = JSON.parse(loggedInUser)
             setUser(foundUser)
         }
-        
+
         getProjects()
 
-        const currentProjectId = localStorage.getItem('projectId')
-        console.log(JSON.parse(currentProjectId))
-        if (currentProjectId) {
-            const foundProjectId = JSON.parse(currentProjectId)
-            setShowId(foundProjectId)
+        // save current show id to top level in app.js
+        if (currentShowId) {
+            console.log('----CURRENT SHOW ITEM (saved to local storage): ', currentShowId)
+            setShowId(currentShowId)
         }
-        // if (currentProject) {
-        //     setShowProject(currentProject)
-        // }
-
     }, [])
+    
     // ==================================================================================
     // if (user !== undefined && projects !== null) {
     return (
@@ -212,9 +205,11 @@ const App = () => {
                     user={user}
                     projects={projects}
                     setShowId={setShowId}
+                    showId={showId}
                     />}/>
 
                 <Route path='/new-project' element={<NewProject 
+                    getProjects={getProjects}
                     user={user}/>} />
 
                 <Route path='/completed-projects' element={<CompletedProjects 

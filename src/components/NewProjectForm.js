@@ -10,7 +10,7 @@ process.env.REACT_APP_NODE_ENV === 'development'
 ? (baseURL = process.env.REACT_APP_DEV_URL)
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
-const NewProjectForm = () => {
+const NewProjectForm = (props) => {
     const navigate = useNavigate()
 
     const [newProject, setNewProject] = useState({
@@ -45,6 +45,7 @@ const NewProjectForm = () => {
             credentials: 'include'
         })
         .then (res => {
+            props.getProjects()
             navigate('/index')
         })
     }
