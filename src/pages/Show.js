@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../stylesheets/Show.css'
 import ShowTabs from '../components/ShowTabs'
 
 const Show = (props) => {
     console.log('render Show.js')
     console.log(props.showProject)
+    console.log(window.location.href)
     // // TRACK PROJECT IN LOCAL STORAGE ===========================================================
     localStorage.setItem('showProject', JSON.stringify(props.showProject))
 

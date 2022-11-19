@@ -15,8 +15,8 @@ const UpdateProjectForm = (props) => {
         props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value})
     }
 
-    const handleUpdateProject = (e) => {
-        e.preventDefault() 
+    const handleUpdateProject = () => {
+        // e.preventDefault() 
         fetch(`${baseURL}/api/v1/projects/${props.showProject.id}`, {
             method: 'PUT',
             body: JSON.stringify(
