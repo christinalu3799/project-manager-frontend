@@ -20,7 +20,9 @@
     max-width: 1000px;
     margin: 4rem 4rem 0 4rem;
 }
-
+.update-project-form textarea {
+   height: 250px;
+}
 @media only screen and (max-width: 900px) {
     .show-sidebar {
         display: none;

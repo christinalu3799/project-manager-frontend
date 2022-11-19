@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
+import '../stylesheets/Show.css'
 import '../stylesheets/ShowTabs.css'
 import '../stylesheets/NewProject.css'
 import StatusIcons from '../components/StatusIcons'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 
-import UpdateProjectForm from '../components/UpdateProjectForm'
 import Tasks from '../components/Tasks'
 import NewTaskForm from '../components/NewTaskForm'
 import Logs from '../components/Logs'
 import NewLogForm from '../components/NewLogForm'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
-import '../stylesheets/Show.css'
 import { useLocation } from 'react-router-dom'
 
 let baseURL
@@ -24,15 +23,35 @@ process.env.REACT_APP_NODE_ENV === 'development'
 const Show = (props) => {
     console.log('------------------RENDERING SHOW.JS----------------')
     // const currentProject = JSON.parse(localStorage.getItem('showProject'))
-    
+    const [id, setId] = useState(null)
+    const location = useLocation()
+    // const id = location.state.id
     const [key, setKey] = useState('home');
     const [isEditing, setIsEditing] = useState(false)
-    const location = useLocation()
-    const id = location.state.id
-    const showProject = props.projects.find(project => project.id === id)
-  
-    localStorage.setItem('showProject', JSON.stringify(showProject))
 
+    // find id of current project
+    // if (myId) {
+        //     setId(myId)
+        // } 
+        
+        // get project based on id
+        const showProject = props.projects.find(project => project.id === id)
+        
+        // save id and project to local storage
+        localStorage.setItem('projectId', JSON.stringify(id))
+        localStorage.setItem('showProject', JSON.stringify(showProject))
+        
+        useEffect(() => {
+            setId(location.state.id)
+            // const myId = localStorage.getItem('projectId')
+            // console.log(myId)
+            // if (myId !== null) {
+            //     setId(JSON.parse(myId))
+            // }
+            // console.log(JSON.parse(myId))
+
+            
+        },[])
 
     const handleEditProject = () => {
         setIsEditing(true)
@@ -67,14 +86,6 @@ const Show = (props) => {
         props.updateProject(id)
         setIsEditing(false)
     }
-    useEffect(() => {
-        // console.log("location form show page", location)
-        if(isEditing) {
-            console.log('----OPENED EDITING FORM-----')
-        } else if (!isEditing) {
-            console.log('----CLOSED EDITING FORM-----')
-        }
-    },[isEditing])
     // need to fetch all tasks associated with this project
     if (showProject != null ) {
         return (
@@ -84,7 +95,6 @@ const Show = (props) => {
                     </div>
     
                     <div className='show-container'> 
-                    <h2>On Show Page</h2>
                         <h1>{showProject.project_name}</h1>
 
                         <Tabs
@@ -122,7 +132,8 @@ const Show = (props) => {
                                                 id='project_description'
                                                 onChange={handleChangeProject}
                                                 placeholder="Project Description"
-                                                defaultValue={showProject.project_description}/>
+                                                defaultValue={showProject.project_description}
+                                                className='update-project-form-textarea'/>
                                         </Form.Group>
                                         <Form.Group className="mb-3">
                                             <Form.Select

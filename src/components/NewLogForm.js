@@ -1,5 +1,8 @@
 import React,  { useState, useContext } from 'react'
 import { LogContext } from '../contexts/LogContext'
+import '../stylesheets/Logs.css'
+import Button from 'react-bootstrap/Button'
+
 const NewLogForm = (props) => {
     const [logs, setLogs, getLogs] = useContext(LogContext)
 
@@ -27,19 +30,20 @@ const NewLogForm = (props) => {
             })
         }
   return (
-        <div>
-            <form onSubmit={handleSubmitLog}>
-                <input 
+        <div className='new-log-form-container'>
+            <form onSubmit={handleSubmitLog} className='new-log-form'>
+                <textarea 
                     type="text" 
                     id="log" 
                     value={log.log}
-                    placeholder="Log"
+                    placeholder="Log Your Progress Today!"
                     onChange={handleAddLog}
-                />
-                <input 
-                    type="submit"
-                    value="Log"
-                />
+                    className='new-log-form-input'
+                ></textarea>
+
+                <Button variant='success' type="submit" className='new-log-form-btn'>
+                    Add Log
+                </Button>
             </form>
         </div> 
   )

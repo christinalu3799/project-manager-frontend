@@ -1,0 +1,30 @@
+.new-log-form-container {
+    width: 100%;
+    display: flex; 
+}
+
+.new-log-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.new-log-form-input {
+    width: 100%;
+    margin: 1rem 0; 
+    padding: 0.5rem;
+    height: 100px;
+}   
+.new-log-form-input:focus {
+    outline: none;
+}
+.new-log-form-btn {
+    height: 40px;
+    /* background-color: #82b89f;
+    border-color: #82b89f; */
+}
+
+.log {
+    margin: 1rem 0;
+}
