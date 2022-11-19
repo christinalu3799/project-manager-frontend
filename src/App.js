@@ -38,7 +38,7 @@ const App = () => {
     let GET_URL 
     process.env.REACT_APP_NODE_ENV === 'development'
     ? (GET_URL = `${baseURL}/api/v1/projects/`)
-    : (GET_URL = `${baseURL}/api/v1/projects`)
+    : (GET_URL = `${baseURL}/api/v1/projects/`)
     // console.log('GET URL: ',GET_URL)
     const getProjects = () => {
         console.log('----------calling getProjects() in App.js')
@@ -128,8 +128,10 @@ const App = () => {
     }
     // show page project id =========================================================
     // const currentProject = JSON.parse(localStorage.getItem('showProject'))
-
     // const [showProject, setShowProject] = useState(null)
+
+    const [showId, setShowId] = useState(null)
+    
     // update project ===============================================================
     
     const [projectToUpdate, setProjectToUpdate] = useState({
@@ -140,18 +142,7 @@ const App = () => {
     })
 
     const updateProject = (id) => {
-
         console.log('----IN updateProject in App.js')
-        let copyProjects = [...projects]
-        console.log('COPY OF PROJECTS: ', copyProjects)
-        copyProjects.map((p) => {
-            if (p.id === id) {
-                return projects.find(project => project.id == id)
-            } else {
-                return p
-            }
-        })
-        setProjects(copyProjects)
         getProjects()
         // window.location.reload(true)
         console.log(projects)
@@ -167,6 +158,12 @@ const App = () => {
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser)
             setUser(foundUser)
+        }
+        const currentProjectId = localStorage.getItem('projectId')
+        console.log(JSON.parse(currentProjectId))
+        if (currentProjectId) {
+            const foundProjectId = JSON.parse(currentProjectId)
+            setShowId(foundProjectId)
         }
         // if (currentProject) {
         //     setShowProject(currentProject)
@@ -212,7 +209,7 @@ const App = () => {
                 <Route path='/index' element={<Index
                     user={user}
                     projects={projects}
-                    // setShowProject={setShowProject}
+                    setShowId={setShowId}
                     />}/>
 
                 <Route path='/new-project' element={<NewProject 
@@ -228,8 +225,7 @@ const App = () => {
                     projects={projects}
                     setProjects={setProjects}
                     getProjects={getProjects}
-                    // showProject={showProject} 
-                    // setShowProject={setShowProject}
+                    showId={showId}
                     updateProject={updateProject}
                     projectToUpdate={projectToUpdate}
                     setProjectToUpdate={setProjectToUpdate}/>}/>

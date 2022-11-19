@@ -23,7 +23,8 @@ process.env.REACT_APP_NODE_ENV === 'development'
 const Show = (props) => {
     console.log('------------------RENDERING SHOW.JS----------------')
     // const currentProject = JSON.parse(localStorage.getItem('showProject'))
-    const [id, setId] = useState(null)
+    const [id, setId] = useState(props.showId)
+    const [showProject, setShowProject] = useState(props.projects.find(project => project.id === id))
     const location = useLocation()
     // const id = location.state.id
     const [key, setKey] = useState('home');
@@ -34,22 +35,25 @@ const Show = (props) => {
         //     setId(myId)
         // } 
         
-        // get project based on id
-        const showProject = props.projects.find(project => project.id === id)
         
+        // get project based on id
+        // const showProject = props.projects.find(project => project.id === id)
         // save id and project to local storage
         localStorage.setItem('projectId', JSON.stringify(id))
         localStorage.setItem('showProject', JSON.stringify(showProject))
         
         useEffect(() => {
-            setId(location.state.id)
+            // setId(location.state.id)
+            if (props.showId) {
+                setId(props.showId)
+            }
             // const myId = localStorage.getItem('projectId')
             // console.log(myId)
             // if (myId !== null) {
             //     setId(JSON.parse(myId))
             // }
             // console.log(JSON.parse(myId))
-
+            setShowProject(props.projects.find(project => project.id === id))
             
         },[])
 
@@ -69,9 +73,9 @@ const Show = (props) => {
         props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value})
     }
     
-    const handleUpdateProject = (e) => {
+    const handleUpdateProject = async (e) => {
         e.preventDefault() 
-        fetch(`${baseURL}/api/v1/projects/${id}`, {
+        await fetch(`${baseURL}/api/v1/projects/${id}`, {
             method: 'PUT',
             body: JSON.stringify(
                 props.projectToUpdate
@@ -81,8 +85,6 @@ const Show = (props) => {
             },
             credentials: 'include'
         })
-        props.getProjects()
-        console.log('just called getProjects()')
         props.updateProject(id)
         setIsEditing(false)
     }

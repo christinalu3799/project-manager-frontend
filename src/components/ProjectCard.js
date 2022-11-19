@@ -27,7 +27,10 @@ const ProjectCard = (props) => {
             <p className='truncate'>{props.project.project_description}</p>
             <StatusIcons status={props.project.project_status} />
 
-                <Link to={`/show/${props.project.id}`} state={{id: props.project.id}}>
+                <Link 
+                    to={`/show/${props.project.id}`} 
+                    // state={{id: props.project.id}} 
+                    onClick={() => props.setShowId(props.project.id)}>
                     Show Details
                 </Link> 
         </div>
