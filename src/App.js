@@ -153,12 +153,14 @@ const App = () => {
     const [deletedProjects, setDeletedProjects] = useState([])
     
     useEffect(() => {
-        getProjects()
         const loggedInUser = localStorage.getItem('user')
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser)
             setUser(foundUser)
         }
+        
+        getProjects()
+
         const currentProjectId = localStorage.getItem('projectId')
         console.log(JSON.parse(currentProjectId))
         if (currentProjectId) {
