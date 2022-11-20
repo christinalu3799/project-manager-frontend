@@ -12,7 +12,9 @@ import Logs from '../components/Logs'
 import NewLogForm from '../components/NewLogForm'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
+import { useNavigate } from 'react-router-dom' 
 
+// set up baseURL ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
 ? (baseURL = process.env.REACT_APP_DEV_URL)
@@ -23,8 +25,8 @@ const Show = (props) => {
     const [key, setKey] = useState('home');
     const [isEditing, setIsEditing] = useState(false)
     const id = props.showId
-
-    // load project
+    const navigate = useNavigate()
+    // load project ================================================================================
     let showProject
     try {
         showProject = props.projects.find(project => project.id === id)
@@ -68,6 +70,22 @@ const Show = (props) => {
             props.updateProject(id)
             setIsEditing(false)
         }
+    
+   async function handleDeleteProject() {
+        try {
+            let response = await fetch(`${baseURL}/api/v1/projects/${id}`, {
+            method: 'DELETE',
+            credentials: 'include'
+            })
+            if (response.ok) {
+                let body = await response.json()
+                props.getProjects()
+                navigate('/index')
+            }
+        } catch (err) {
+            console.log('oops! you got an error! ', err)
+        }
+    }
     // =============================================================================================
         
     if (showProject != null ) {
@@ -134,7 +152,7 @@ const Show = (props) => {
                                         <Button variant="success" type="submit">
                                             Update Project
                                         </Button>
-                                        <Button variant="secondary" onClickCapture={() => setIsEditing()}>
+                                        <Button variant="secondary" onClick={() => setIsEditing()}>
                                             Discard
                                         </Button>
                                     </Form>
@@ -147,6 +165,9 @@ const Show = (props) => {
                                             <br/>
                                         <StatusIcons status={showProject.project_status}/>
                                         <Button variant='outline-success' onClick={() => handleEditProject()}>Edit</Button>
+                                            <br/>
+                                            <br/>
+                                        <Button variant='danger' onClick={()=> handleDeleteProject()}>Delete</Button>
                                     </>}
                                 </div>
                             </Tab>
