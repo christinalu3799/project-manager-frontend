@@ -85,7 +85,7 @@ const NewProjectForm = (props) => {
                 </Form.Select>
             </Form.Group>
             
-            <Button variant="success" type="submit">
+            <Button type="submit" className='new-project-btn'>
                 Create New Project
             </Button>
         </Form>

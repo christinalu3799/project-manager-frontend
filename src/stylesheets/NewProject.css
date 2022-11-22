@@ -3,6 +3,11 @@
     width: 100%;
     justify-content: center;
 }
+/* only for handwritten font =============== */
+.form-control {
+    font-size: 1.25rem;
+}
+/* ========================================= */
 .new-project {
     display: flex;
     flex-direction: column;
@@ -16,6 +21,21 @@
 }
 .new-project-form {
     width: 500px;
+}
+
+.new-project-btn {
+    background-color: #7ea482;
+    border-color: #7ea482;
+    color: var(--off-white)
+}
+.new-project-btn:hover {
+    color: var(--off-white);
+    background-color: #7ea482;
+    border-color: #7ea482;
+}
+.btn.new-project-btn:active {
+    background-color: #68856b;
+    border-color: #7ea482;
 }
 @media only screen and (max-width: 600px) {
     .new-project {

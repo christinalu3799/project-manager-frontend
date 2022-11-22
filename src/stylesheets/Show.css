@@ -96,7 +96,6 @@
     justify-content: space-between;
 }
 .show .update-btn {
-    /* height: 40px; */
     background-color: #7ea482;
     border-color: #7ea482;
     color: var(--off-white)
