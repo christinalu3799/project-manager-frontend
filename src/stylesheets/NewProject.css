@@ -17,7 +17,6 @@
 .new-project-form {
     width: 500px;
 }
-
 @media only screen and (max-width: 600px) {
     .new-project {
         margin: 0 2rem;
