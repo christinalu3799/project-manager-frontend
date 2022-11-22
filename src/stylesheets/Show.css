@@ -1,4 +1,4 @@
-.show {
+.show-page {
     display: flex; 
     justify-content: center;
     height: fit-content;
@@ -6,7 +6,7 @@
     max-width: 1200px;
     box-sizing: border-box;
 }
-.show h1 {
+.show-page h1 {
     margin: 0 0 2rem 0;
 }
 .show-sidebar {
@@ -34,11 +34,11 @@
     height: 100%;
 }
 
-.show button {
+.show-page button {
     color: var(--body-font-color);
     font-size: 1.15rem;
 }
-.show button:hover {
+.show-page button:hover {
     color: var(--on-hover);
 }
 /* =================== DETAILS ==================== */
@@ -56,7 +56,7 @@
     height: 30px;
     border-radius: 50px;
     color: white;
-    margin: 0 0 1rem 0;
+    margin: 1rem 0;
 }
 .status-icon p {
     margin: 0;
@@ -72,14 +72,14 @@
 }
 
 /* =================== EDIT BTN =================== */
-.show button.edit-btn {
+.show-page button.edit-btn {
     position: absolute;
     left: 2rem;
     bottom: 2rem;
     border: none;
     width: 40px;
 }
-.show button.edit-btn img {
+.show-page button.edit-btn img {
     width: 100%;
 }
 /* ================ UPDATE FORM =================== */
@@ -91,26 +91,26 @@
 .update-project-form textarea {
     height: 250px;
 }
-.show .update-btns {
+.show-page .update-btns {
     display: flex;
     justify-content: space-between;
 }
-.show .update-btn {
+.show-page .update-btn {
     background-color: #7ea482;
     border-color: #7ea482;
     color: var(--off-white)
 }
-.show .update-btn:hover,
-.show .discard-btn:hover {
+.show-page .update-btn:hover,
+.show-page .discard-btn:hover {
     color: var(--off-white);
 }
-.show .discard-btn {
+.show-page .discard-btn {
     background-color: #9b9d9b;
     border-color: #9b9d9b;
     color: var(--off-white)
 }
 /* =================== DELETE BTN ================= */
-.show button.delete-btn {
+.show-page button.delete-btn {
     color: var(--off-white);
     position: absolute;
     bottom: 2rem;

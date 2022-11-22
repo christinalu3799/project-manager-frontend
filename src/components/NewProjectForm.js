@@ -33,9 +33,9 @@ const NewProjectForm = (props) => {
         process.env.REACT_APP_NODE_ENV === 'development'
         ? (POST_URL = `${baseURL}/api/v1/projects/`)
         : (POST_URL = `${baseURL}/api/v1/projects/`)
+        
         fetch(POST_URL, {
             method: 'POST',
-
             body: JSON.stringify(
                 newProject
             ),

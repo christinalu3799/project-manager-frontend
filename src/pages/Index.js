@@ -8,7 +8,7 @@ const Index = (props) => {
         return (
         <div className='index'>
             <div className='index-container'>
-                <h1>{`Project Dashboard`}</h1>
+                <h1>{`Dashboard`}</h1>
                 <h4>Welcome back {props.user}! Let's get to work. </h4>
                 <div className='project-container'>
                 {props.projects.map((project) => {

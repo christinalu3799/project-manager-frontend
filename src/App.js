@@ -17,7 +17,7 @@ import CompletedProjects from './pages/CompletedProjects'
 import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
 import NotFound from './pages/NotFound'
-
+import Logo from './static/iteration.png'
 // ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -179,11 +179,14 @@ const App = () => {
         <div className='main handwritten'>
             <Navbar collapseOnSelect expand="lg" >
                 <Container className='nav-container'>
-                    <Navbar.Brand as={Link} to="/index">Project Manager</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/index">
+                        <img src={Logo} alt='project manager logo' className='logo'/>
+                        Project Manager
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className='custom-nav'>
                         <Nav className="me-auto">
-                            <Nav.Link as={Link} to="/new-project">Add New Project</Nav.Link>
+                            <Nav.Link as={Link} to="/new-project" className='add-new-project'>Add New Project</Nav.Link>
                             <NavDropdown title="See More" className='custom-nav-dropdown'>
                                 <NavDropdown.Item as={Link} to="/completed-projects">View Completed Projects</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/deleted-projects">View Deleted Projects</NavDropdown.Item>

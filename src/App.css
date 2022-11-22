@@ -39,13 +39,25 @@ p {
 .handwritten {
     font-family: 'Patrick Hand', cursive;
 }
+
+.logo {
+    margin: 0 1rem;
+}
 .nav-item {
     color: rgba(255,255,255,0.55);
     text-decoration: none;
 }
+.navbar-brand {
+    font-size: 2rem;
+}
 .navbar {
     background-color: var(--nav-bg-color);
     width: 100%;
+    font-size: 1.25rem;
+}
+
+.dropdown-menu.show {
+    width: fit-content;
 }
 
 @media only screen and (max-width: 1000px) {

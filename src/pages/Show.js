@@ -118,7 +118,7 @@ const Show = (props) => {
         
     if (showProject != null ) {
         return (
-                <div className='show'>
+                <div className='show-page'>
                     <div className='show-sidebar'>
                         
                     </div>

@@ -28,29 +28,37 @@
 .new-task-form-container .new-task-form-btn:hover {
     color: var(--off-white);
 }
+/* =================== TASKS ====================== */
 .tasks-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
 }
 
-/* =================== TASKS ====================== */
 .task {
     display: flex;
     align-items: center;
 }
 
-.checkbox {
-    width: 25px;
-    height: 25px;
+input.checkbox {
+    height: 20px;
+    width: 20px;
     margin: 1rem;
+    /* opacity: 0;
+    height: 0;
+    width: 0; */
 }
-
-.tasks-container p.task-description {
-    margin: 0;
+input.checkbox::before {
+    background: var(--body-font-color);
 }
-
-
-
+.task {
+    justify-content: space-between;
+}
+.task > div {
+    display: flex;
+    align-items: center;
+}
 
 
 @media only screen and (max-width: 600px) {
