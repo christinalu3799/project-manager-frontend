@@ -6,10 +6,15 @@ const Logs = () => {
     const [logs, setLogs] = useContext(LogContext)
     if (logs !== null) {
         return (
-            <div className='log'>
+            <div >
                 {logs.map((log) => {
+                    // format date 
+                    let formattedDate = log.created_date.slice(0,-12)
+                    let time = log.created_date.slice(-12)
+
                     return (
-                        <div key={log.id}>
+                        <div key={log.id} className='log'>
+                            <p className='time'>{formattedDate} / {time}</p>
                             <p>{log.log}</p>
                         </div>
                     )

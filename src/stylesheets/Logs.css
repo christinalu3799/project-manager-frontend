@@ -15,16 +15,31 @@
     margin: 1rem 0; 
     padding: 0.5rem;
     height: 100px;
+    border-color: var(--body-font-color);
+    border-radius: 5px;
 }   
 .new-log-form-input:focus {
     outline: none;
 }
-.new-log-form-btn {
-    height: 40px;
-    /* background-color: #82b89f;
-    border-color: #82b89f; */
+/* ================ ADD TASK BTN ================== */
+.new-log-form-container .new-log-form-btn {
+    /* height: 40px; */
+    background-color: #7ea482;
+    border-color: #7ea482;
+    color: var(--off-white)
+}
+.new-log-form-container .new-log-form-btn:hover {
+    color: var(--off-white);
 }
 
 .log {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+    background-color: var(--off-white);
+    padding: 1rem;
+    border-radius: 5px;
+    /* border: 1px solid var(--body-font-color); */
+    filter: drop-shadow(2px 5px 5px #cacaca);
+}
+.log .time {
+    font-weight: bold;
 }

@@ -1,27 +1,121 @@
 .show {
     display: flex; 
-    margin: 0 auto;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
 }
-
+.show h1 {
+    margin: 0 0 2rem 0;
+}
 .show-sidebar {
-    background-color: rgb(200, 200, 200);
+    background-color: var(--off-white);
     width: 20%;
-    height: 80vh;
     margin: 4rem 0 0 0;
     border-radius: 5px;
+    filter: drop-shadow(2px 5px 5px #cacaca);
 }
 .show-container {
+    background-color: var(--off-white);
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 80%;
-    background-color: white;
     max-width: 1000px;
-    margin: 4rem 4rem 0 4rem;
+    height: 80%;
+    margin: 4rem 0 0 2rem;
+    padding: 2rem;
+    border-radius: 5px;
+    filter: drop-shadow(2px 5px 5px #cacaca);
+}
+
+.tab-content {
+    height: 100%;
+}
+
+.show button {
+    color: var(--body-font-color);
+    font-size: 1.15rem;
+}
+.show button:hover {
+    color: var(--on-hover);
+}
+/* =================== DETAILS ==================== */
+.details {
+    height: 100%;
+}
+.nav-link.active {
+    color: black;
+}
+.status-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
+    border-radius: 50px;
+    color: white;
+    margin: 0 0 1rem 0;
+}
+.status-icon p {
+    margin: 0;
+}
+.not-started {
+    background-color: #BF7659;
+}
+.in-progress {
+    background-color: #D59C5A;
+}
+.completed {
+    background-color: #7ea482;
+}
+
+/* =================== EDIT BTN =================== */
+.show button.edit-btn {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    border: none;
+    width: 40px;
+}
+.show button.edit-btn img {
+    width: 100%;
+}
+/* ================ UPDATE FORM =================== */
+.update-project-form {
+    display: flex;
+    flex-direction: column;
+
 }
 .update-project-form textarea {
-   height: 250px;
+    height: 250px;
+}
+.show .update-btns {
+    display: flex;
+    justify-content: space-between;
+}
+.show .update-btn {
+    /* height: 40px; */
+    background-color: #7ea482;
+    border-color: #7ea482;
+    color: var(--off-white)
+}
+.show .update-btn:hover,
+.show .discard-btn:hover {
+    color: var(--off-white);
+}
+.show .discard-btn {
+    background-color: #9b9d9b;
+    border-color: #9b9d9b;
+    color: var(--off-white)
+}
+/* =================== DELETE BTN ================= */
+.show button.delete-btn {
+    color: var(--off-white);
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
 }
 @media only screen and (max-width: 900px) {
     .show-sidebar {

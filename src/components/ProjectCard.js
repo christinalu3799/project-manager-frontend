@@ -16,7 +16,9 @@ const ProjectCard = (props) => {
                 <Link 
                     to={`/show/${props.project.id}`} 
                     state={{id: props.project.id}} 
-                    onClick={() => props.setShowId(props.project.id)}>
+                    onClick={() => props.setShowId(props.project.id)}
+                    className='show-card-link'
+                    >
                     Show Details
                 </Link> 
         </div>

@@ -3,7 +3,6 @@ import {Route, Routes, useNavigate, Link} from 'react-router-dom';
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './stylesheets/Index.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -30,7 +29,6 @@ console.log('baseURL: ', baseURL)
 const App = () => {
     console.log('------------------RENDERING APP.JS----------------')
     const navigate = useNavigate()
-    
     const [user, setUser] = useState()
     
     // get all projects =============================================================
@@ -76,6 +74,11 @@ const App = () => {
             } else {
                 setUser(e.target.username.value)
                 setRegister(true)
+                try {
+                    getProjects()
+                } catch {
+                    console.log('new user! please add a new project.')
+                }
                 navigate('/index')
             }
         })
@@ -85,8 +88,8 @@ const App = () => {
     const login = (e) => {
         e.preventDefault(e)
         // console.log(e.target.username.value)
-        console.log(e.target.email.value)
-        console.log(e.target.password.value)
+        // console.log(e.target.email.value)
+        // console.log(e.target.password.value)
         fetch(`${baseURL}/api/v1/users/login`, {
             method: 'POST',
             body: JSON.stringify({
@@ -109,6 +112,7 @@ const App = () => {
                 setLogin(false)
             } else {
                 setLogin(true)
+                getProjects()
                 navigate('/index')
             }
         })
@@ -124,8 +128,8 @@ const App = () => {
     // show page project id =========================================================
     const [showId, setShowId] = useState(null)
     const currentShowId = JSON.parse(localStorage.getItem('showId'))
+
     // update project ===============================================================
-    
     const [projectToUpdate, setProjectToUpdate] = useState({
             project_name: '',
             project_deadline: '',
@@ -149,6 +153,7 @@ const App = () => {
     // deleted projects =============================================================
     const [deletedProjects, setDeletedProjects] = useState([])
     
+    // save user to localstorage ====================================================
     useEffect(() => {
         const loggedInUser = localStorage.getItem('user')
         if (loggedInUser) {
@@ -157,19 +162,22 @@ const App = () => {
         }
 
         getProjects()
-
         // save current show id to top level in app.js
         if (currentShowId) {
-            console.log('----CURRENT SHOW ITEM (saved to local storage): ', currentShowId)
             setShowId(currentShowId)
-        }
+            try {
+                projects.map(p => console.log(p)) 
+            } catch (err) {
+                console.log('err = ', err)
+                console.log(projects)
+            }
+        }   
     }, [])
     
     // ==================================================================================
-    // if (user !== undefined && projects !== null) {
     return (
-        <div className='main'>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <div className='main handwritten'>
+            <Navbar collapseOnSelect expand="lg" >
                 <Container className='nav-container'>
                     <Navbar.Brand as={Link} to="/index">Project Manager</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -189,7 +197,7 @@ const App = () => {
                                 </>
                                 :
                                 <>
-                                    <NavDropdown title={`Welcome back ${user}!`} className='custom-nav-dropdown'>
+                                    <NavDropdown title={`Logged in as: ${user}`} className='custom-nav-dropdown'>
                                         <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                     </NavDropdown>
                                 </>
@@ -242,14 +250,8 @@ const App = () => {
                 <Route path='*' element={<NotFound/>}/>
 
             </Routes>
-            
-            
-
-
         </div>
-
     )
-// }
 }
 
 export default App;

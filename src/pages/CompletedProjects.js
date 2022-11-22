@@ -6,7 +6,7 @@ const CompletedProjects = (props) => {
         return (
             <>
                 <h1>COMPLETED PROJECTS</h1>
-                <CompleteProjectsContainer />
+                <CompleteProjectsContainer projects={props.projects}/>
             </>
         )
     } else {

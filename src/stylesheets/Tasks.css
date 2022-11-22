@@ -1,5 +1,3 @@
-/* NEW TASK FORM */
-
 .new-task-form-container {
     display: flex; 
     width: 100%;
@@ -13,18 +11,29 @@
     width: 75%;
     margin: 1rem; 
     padding: 0.5rem;
+    border-color: var(--body-font-color);
+    border-radius: 5px;
+    border-width: 1px;
 }
 .new-task-form-input:focus {
     outline: none;
 }
-.new-task-form-btn {
-    height: 50px;
+/* ================ ADD TASK BTN ================== */
+.new-task-form-container .new-task-form-btn {
+    /* height: 40px; */
+    background-color: #7ea482;
+    border-color: #7ea482;
+    color: var(--off-white)
+}
+.new-task-form-container .new-task-form-btn:hover {
+    color: var(--off-white);
 }
 .tasks-container {
     width: 100%;
     height: fit-content;
 }
 
+/* =================== TASKS ====================== */
 .task {
     display: flex;
     align-items: center;
@@ -39,6 +48,9 @@
 .tasks-container p.task-description {
     margin: 0;
 }
+
+
+
 
 
 @media only screen and (max-width: 600px) {

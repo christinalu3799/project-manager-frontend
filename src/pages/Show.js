@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import '../stylesheets/Show.css'
-import '../stylesheets/ShowTabs.css'
 import '../stylesheets/NewProject.css'
 import StatusIcons from '../components/StatusIcons'
 import Button from 'react-bootstrap/Button';
@@ -13,7 +12,7 @@ import NewLogForm from '../components/NewLogForm'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
 import { useNavigate } from 'react-router-dom' 
-
+import EditIcon from '../static/editing.png'
 // set up baseURL ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -24,19 +23,32 @@ const Show = (props) => {
     console.log('------------------RENDERING SHOW.JS----------------')
     const [key, setKey] = useState('home');
     const [isEditing, setIsEditing] = useState(false)
-    const id = props.showId
     const navigate = useNavigate()
     // load project ================================================================================
     let showProject
+    // console.log('project.id = ', projects.id)
+    // console.log('props.showId = ', props.showId)
+    // console.log('props.projects = ', props.projects)
+
     try {
-        showProject = props.projects.find(project => project.id === id)
+        showProject = props.projects.find(project => project.id === props.showId)
     } catch (error) {
-        console.log('oops!')
+        console.log('oops! error = ', error)
         console.log('here is projects', props.projects)
-    }
+    } 
    
     localStorage.setItem('showProject', JSON.stringify(showProject))
-    localStorage.setItem('showId', JSON.stringify(id))
+    localStorage.setItem('showId', JSON.stringify(props.showId))
+
+    // set projectToUpdate on page render ==========================================================
+    useEffect(() => {
+        props.setProjectToUpdate({
+            project_name: showProject.project_name,
+            project_deadline: showProject.project_deadline,
+            project_description: showProject.project_description,
+            project_status: 'deleted'
+        })
+    },[])
     // handle updating project =====================================================================
     const handleEditProject = () => {
         setIsEditing(true)
@@ -55,7 +67,7 @@ const Show = (props) => {
     
     const handleUpdateProject = (e) => {
         e.preventDefault() 
-        fetch(`${baseURL}/api/v1/projects/${id}`, {
+        fetch(`${baseURL}/api/v1/projects/${props.showId}`, {
             method: 'PUT',
             body: JSON.stringify(
                 props.projectToUpdate
@@ -65,26 +77,42 @@ const Show = (props) => {
                 },
                 credentials: 'include'
             })
+            
             // call getProjects() from App.js to re-render state at top level
             props.getProjects()
-            props.updateProject(id)
+            props.updateProject(props.showId)
             setIsEditing(false)
         }
-    
+        
+    // handle delete project =======================================================================
    async function handleDeleteProject() {
-        try {
-            let response = await fetch(`${baseURL}/api/v1/projects/${id}`, {
-            method: 'DELETE',
-            credentials: 'include'
-            })
-            if (response.ok) {
-                let body = await response.json()
-                props.getProjects()
-                navigate('/index')
-            }
-        } catch (err) {
-            console.log('oops! you got an error! ', err)
-        }
+        fetch(`${baseURL}/api/v1/projects/${props.showId}`, {
+            method: 'PUT',
+            body: JSON.stringify(
+                props.projectToUpdate
+                ),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+        })
+        // call getProjects() from App.js to re-render state at top level
+        props.getProjects()
+        props.updateProject(props.showId)
+        navigate('/index')
+        // try {
+        //     let response = await fetch(`${baseURL}/api/v1/projects/${id}`, {
+        //     method: 'DELETE',
+        //     credentials: 'include'
+        //     })
+        //     if (response.ok) {
+        //         let body = await response.json()
+        //         props.getProjects()
+        //         navigate('/index')
+        //     }
+        // } catch (err) {
+        //     console.log('oops! you got an error! ', err)
+        // }
     }
     // =============================================================================================
         
@@ -105,7 +133,7 @@ const Show = (props) => {
                             className="mb-3 tabs-container"
                             fill
                         >
-                            <Tab eventKey="home" title="Details">
+                            <Tab eventKey="home" title="Details" className='tab-btn'>
                                 <div className='details'>
                                     {isEditing ? 
                                     <>
@@ -149,12 +177,15 @@ const Show = (props) => {
                                                 <option value='completed'>Completed</option>
                                             </Form.Select>
                                         </Form.Group>
-                                        <Button variant="success" type="submit">
+                                        <div className='update-btns'>
+
+                                        <Button type="submit" className='update-btn'>
                                             Update Project
                                         </Button>
-                                        <Button variant="secondary" onClick={() => setIsEditing()}>
+                                        <Button className='discard-btn' onClick={() => setIsEditing()}>
                                             Discard
                                         </Button>
+                                        </div>
                                     </Form>
                                     </>
                                     :
@@ -164,10 +195,12 @@ const Show = (props) => {
                                         <p>{showProject.project_description}</p>
                                             <br/>
                                         <StatusIcons status={showProject.project_status}/>
-                                        <Button variant='outline-success' onClick={() => handleEditProject()}>Edit</Button>
+                                        <button onClick={() => handleEditProject()} className='edit-btn'>
+                                            <img src={EditIcon}/>
+                                        </button>
                                             <br/>
                                             <br/>
-                                        <Button variant='danger' onClick={()=> handleDeleteProject()}>Delete</Button>
+                                        <Button variant='danger' onClick={()=> handleDeleteProject()} className='delete-btn'>Delete</Button>
                                     </>}
                                 </div>
                             </Tab>

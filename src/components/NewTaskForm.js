@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
 import '../stylesheets/Tasks.css'
 import Button from 'react-bootstrap/Button'
+
 const NewTaskForm = (props) => {
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
 
@@ -36,7 +37,7 @@ const NewTaskForm = (props) => {
                     type="text" 
                     id="task" 
                     value={task.task}
-                    placeholder="Task"
+                    placeholder="Add a to-do!"
                     onChange={handleAddTask}
                     required
                     className='new-task-form-input'
