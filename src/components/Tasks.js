@@ -45,8 +45,6 @@ const Tasks = (props) => {
     }
     // handle deleting a task =========================================
     async function handleDeleteTask(id) {
-        console.log('task.id = ', id)
-        console.log(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${id}`)
         try {
             let response = await fetch(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${id}`, {
                 method: 'DELETE',
@@ -59,8 +57,6 @@ const Tasks = (props) => {
         } catch(err) {
             console.log('err: ', err)
         }
-            
-        
     }
 
     if (tasks !== null) {

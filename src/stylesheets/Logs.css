@@ -61,7 +61,7 @@
 .edit-log-btn {
     border: none;
     width: 30px;
-    align-self: flex-end;
+    
 }
 .edit-log-btn img {
     width: 100%;
@@ -71,4 +71,9 @@
     border-radius: 5px;
     padding: 0.5rem;
     background-color: var(--main-bg-color);
+}
+
+/* ============== DELETE LOG BTN ================= */
+.log-page .update-btns {
+    align-self: flex-end;
 }

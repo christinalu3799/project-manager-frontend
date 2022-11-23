@@ -3,7 +3,7 @@ import { LogContext } from '../contexts/LogContext'
 import EditIcon from '../static/editing.png'
 import '../stylesheets/Logs.css'
 import UpdateLogForm from './UpdateLogForm'
-
+import TrashIcon from '../static/trash.png'
 const Logs = (props) => {
     const [logs, setLogs, getLogs] = useContext(LogContext)
     const [currentLog, setCurrentLog] = useState(null)
@@ -19,9 +19,26 @@ const Logs = (props) => {
     const confirmLogUpdate = () => {
         setCurrentLog(null)
     }
+    // handle deleting a log =========================================
+    async function handleDeletelog(id) {
+        console.log('log.id = ', id)
+        try {
+            let response = await fetch(`${props.baseURL}/api/v1/projects/logs/${props.showProject.id}/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                getLogs()
+            }
+
+        } catch(err) {
+            console.log('err: ', err)
+        }
+    }
+
     if (logs !== null) {
         return (
-            <div >
+            <div className='log-page'>
                 {logs.map((log) => {
                     // format date 
                     let formattedDate = log.created_date.slice(0,-12)
@@ -50,9 +67,14 @@ const Logs = (props) => {
                                     <p>
                                         {log.log}
                                     </p>
-                                    <button onClick={()=>handleUpdateLog(log.id)} className='edit-log-btn'>
-                                        <img src={EditIcon} alt='editing icon'/>
-                                    </button>
+                                    <div className='update-btns'>
+                                        <button onClick={()=>handleUpdateLog(log.id)} className='edit-log-btn'>
+                                            <img src={EditIcon} alt='editing icon'/>
+                                        </button>
+                                        <button onClick={()=>handleDeletelog(log.id)} className='trash-btn'>
+                                            <img src={TrashIcon} alt='trashbin icon'/>
+                                        </button>
+                                    </div>
 
                             </>}
                         </div>
