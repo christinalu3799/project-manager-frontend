@@ -1,7 +1,6 @@
 .index {
     display: flex;
     justify-content: center;
-    margin: 0 4rem;
     width: 100%;
     max-width: 1200px;
 }
@@ -20,8 +19,6 @@
     max-width: 1200px;
     margin-top: 4rem;
 }
-
-
 .not-logged-in {
     width: 100%;
     height: 100vh;
@@ -45,7 +42,6 @@
     filter: drop-shadow(5px 5px 5px #cacaca);
     border-radius: 10px;
 }
-
 .show-card-link {
     color: var(--body-font-color);
     text-decoration: none;
@@ -61,8 +57,15 @@
     text-overflow: ellipsis;
 }
 @media only screen and (max-width: 600px) {
+    .index-container {
+        margin: 2rem;
+        padding: 2rem;
+    }
     .project-container {
         justify-content: center;
+    }
+    .project-card {
+        width: 100%;
     }
     .title {
         font-size: 2.5rem;

@@ -2,7 +2,7 @@ import React from 'react'
 import ProjectCard from '../components/ProjectCard'
 
 const Index = (props) => {
-    console.log('--------RENDERING INDEX.JS---------')
+    console.log('------------------RENDERING INDEX.JS----------------')
 
     if (props.user !== undefined && props.projects !== null) {
         return (

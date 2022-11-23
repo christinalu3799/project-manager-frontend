@@ -1,23 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
-import { useNavigate } from 'react-router-dom'
 import '../stylesheets/Tasks.css'
 import '../stylesheets/Logs.css'
 import UpdateTaskForm from './UpdateTaskForm'
 import EditIcon from '../static/editing.png'
 import TrashIcon from '../static/trash.png'
 const Tasks = (props) => {
-    console.log('RENDERING TASKS')
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
-    
-    const navigate = useNavigate()
     // handle checking a task =========================================
     const handleCheckedTask = (e, task) => {
         let taskToUpdate = {
             task: task.task,
             is_complete: e.target.checked
         }
-
         fetch(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${task.id}`, {
             method: 'PUT',
             body: JSON.stringify(taskToUpdate),
@@ -36,11 +31,7 @@ const Tasks = (props) => {
     const handleUpdateTask = (e, task, id) => {
         setCurrentTask(id)
     }
-    
     const confirmTaskUpdate = () => {
-        
-        console.log('in confirmTaskUpdate')
-        // setIsUpdating(false)
         setCurrentTask(null)
     }
     // handle deleting a task =========================================
@@ -53,12 +44,11 @@ const Tasks = (props) => {
             if (response.ok) {
                 getTasks()
             }
-
         } catch(err) {
             console.log('err: ', err)
         }
     }
-
+    // ================================================================
     if (tasks !== null) {
         return (
             <div className='tasks-container'> 
@@ -75,7 +65,6 @@ const Tasks = (props) => {
                                     updatingTask={updatingTask}
                                     baseURL={props.baseURL}
                                     showProject={props.showProject}/>
-                                
                             </>
                             :
                             <>  

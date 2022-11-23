@@ -1,25 +1,23 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import StatusDots from '../components/StatusDots'
 
 const SideBar = (props) => {
-    const navigate = useNavigate()
-
-    // const goToProject = (id) => {
-    //     console.log('project id = ', id)
-    //     // navigate(`/show/${id}`)
-    // }
+  
     return (
-        <div>
+        <>
             {props.projects.map(project => {
                 return (
-                    <div>
-                        {/* <button onClick={() => goToProject(project.id)}>{project.project_name}</button> */}
-                        <Link to={`/show/${project.id}`}>{project.project_name}</Link>
-                        {/* <a href={`/show/${project.id}`}>{project.project_name}</a> */}
-                    </div>
+                    <Link 
+                        key={project.id}
+                        to={`/show/${project.id}`}
+                        onClick={() => props.setShowId(project.id)}className='sidebar-nav'>
+                            {project.project_name}
+                        <StatusDots status={project.project_status}/>
+                    </Link>
                 )
             })}
-        </div>
+        </>
     )
 }
 

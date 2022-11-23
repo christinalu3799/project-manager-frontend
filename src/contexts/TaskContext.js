@@ -6,11 +6,10 @@ process.env.REACT_APP_NODE_ENV === 'development'
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 export const TaskProvider = (props) => {
-    
     const [tasks, setTasks] = useState(null)
 
     const getTasks = () => {
-        fetch(`${baseURL}/api/v1/projects/tasks/${props.project_id}`, {
+        fetch(`${baseURL}/api/v1/projects/tasks/${props.showId}`, {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -22,7 +21,7 @@ export const TaskProvider = (props) => {
     // this hook is similar to component did mount
     useEffect(() => {
         getTasks()
-    }, [])
+    }, [props.showId])
 
     return  <TaskContext.Provider value={[tasks, setTasks, getTasks]   
                 }>

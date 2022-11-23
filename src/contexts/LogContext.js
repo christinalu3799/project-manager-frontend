@@ -11,7 +11,7 @@ export const LogProvider = (props) => {
     const [logs, setLogs] = useState(null)
 
     const getLogs = () => {
-        fetch(`${baseURL}/api/v1/projects/logs/${props.project_id}`, {
+        fetch(`${baseURL}/api/v1/projects/logs/${props.showId}`, {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -23,7 +23,7 @@ export const LogProvider = (props) => {
     // this hook is similar to component did mount
     useEffect(() => {
         getLogs()
-    }, [])
+    }, [props.showId])
 
     return  <LogContext.Provider value={[logs, setLogs, getLogs]}>
                 {props.children}

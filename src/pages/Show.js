@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Tabs, Tab } from 'react-bootstrap'
 import '../stylesheets/Show.css'
 import '../stylesheets/NewProject.css'
@@ -15,6 +14,8 @@ import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
 import { useNavigate } from 'react-router-dom' 
 import EditIcon from '../static/editing.png'
+import TrashIcon from '../static/trash.png'
+
 // set up baseURL ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -101,7 +102,7 @@ const Show = (props) => {
         return (
                 <div className='show-page'>
                     <div className='show-sidebar'>
-                        <SideBar projects={props.projects}/>
+                        <SideBar projects={props.projects} setShowId={props.setShowId}/>
                     </div>
     
                     <div className='show-container'> 
@@ -181,20 +182,25 @@ const Show = (props) => {
                                         </button>
                                             <br/>
                                             <br/>
-                                        <Button variant='danger' onClick={()=> handleDeleteProject()} className='delete-btn'>Delete</Button>
+                                        <button onClick={()=> handleDeleteProject()} className='delete-btn'>
+                                            <img src={TrashIcon} alt='trash bin'/>
+                                        </button>
                                     </>}
                                 </div>
                             </Tab>
                             <Tab eventKey="profile" title="Tasks">
-                                <TaskProvider project_id={showProject.id}>
+                                <TaskProvider showId={props.showId}>
                                     <NewTaskForm baseURL={baseURL} showProject={showProject}/>
-                                    <Tasks baseURL={baseURL} showProject={showProject} getProjects={props.getProjects}/>
+                                    <Tasks 
+                                        baseURL={baseURL} 
+                                        showProject={showProject}/>
                                 </TaskProvider>
                             </Tab>
                             <Tab eventKey="contact" title="Log">
-                                <LogProvider project_id={showProject.id}>
+                                <LogProvider showId={props.showId}>
                                     <NewLogForm baseURL={baseURL} showProject={showProject}/>
-                                    <Logs baseURL={baseURL} showProject={showProject}/>
+                                    <Logs baseURL={baseURL} 
+                                    showProject={showProject}/>
                                 </LogProvider>
                             </Tab>
                         </Tabs>

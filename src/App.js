@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {Route, Routes, useNavigate, Link} from 'react-router-dom';
 // import react-bootstrap components ===============================================
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,13 +9,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 // import components ================================================================
 import Index from './pages/Index';
-import ProjectCard from './components/ProjectCard'
 import RegisterUser from './components/RegisterUser';
 import LoginUser from './components/LoginUser';
 import NewProject from './pages/NewProject';
 import CompletedProjects from './pages/CompletedProjects'
 import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
+import ShowPage from './pages/ShowPage';
 import NotFound from './pages/NotFound'
 import Logo from './static/iteration.png'
 // ==================================================================================
@@ -159,9 +159,9 @@ const App = () => {
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser)
             setUser(foundUser)
+            getProjects()
         }
 
-        getProjects()
         // save current show id to top level in app.js
         if (currentShowId) {
             setShowId(currentShowId)
@@ -228,16 +228,16 @@ const App = () => {
                     baseURL={baseURL}
                     updateProject={updateProject}
                     />}/>
-
                 <Route path='/show/:id' element={<Show 
                     projects={projects}
                     setProjects={setProjects}
                     getProjects={getProjects}
                     showId={showId}
+                    setShowId={setShowId}
                     updateProject={updateProject}
                     projectToUpdate={projectToUpdate}
                     setProjectToUpdate={setProjectToUpdate}/>}/>
-
+                {/* </Route> */}
                 <Route path='/register' element={<RegisterUser 
                     register={register} 
                     registerSuccess={registerSuccess}/>} />

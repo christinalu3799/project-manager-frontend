@@ -1,20 +1,14 @@
 .show-page {
     display: flex; 
     justify-content: center;
-    height: fit-content;
+    height: 90vh;
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
+    padding: 4rem 0;
 }
 .show-page h1 {
     margin: 0 0 2rem 0;
-}
-.show-sidebar {
-    background-color: var(--off-white);
-    width: 20%;
-    margin: 4rem 0 0 0;
-    border-radius: 5px;
-    filter: drop-shadow(2px 5px 5px #cacaca);
 }
 .show-container {
     background-color: var(--off-white);
@@ -23,12 +17,57 @@
     flex-direction: column;
     width: 80%;
     max-width: 1000px;
-    height: 80%;
-    margin: 4rem 0 0 2rem;
+    height: 100%;
+    margin: 0 0 0 2rem;
     padding: 2rem;
     border-radius: 5px;
     filter: drop-shadow(2px 5px 5px #cacaca);
+    overflow: hidden;
 }
+/* =================== SIDEBAR ==================== */
+.show-sidebar {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--off-white);
+    width: 20%;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    filter: drop-shadow(2px 5px 5px #cacaca);
+}
+.show-sidebar .sidebar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--main-bg-color);
+    filter: drop-shadow(2px 5px 5px #cacaca);
+    margin: 0.5rem 0;
+}
+.show-sidebar a {
+    width: 100%;
+    color: var(--body-font-color);
+    text-decoration: none;
+}
+.show-sidebar .status-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.show-sidebar .status-dot .not-started {
+    background-color: #BF7659;
+}
+.show-sidebar .status-dot .in-progress {
+    background-color: #D59C5A;
+}
+.show-sidebar .status-dot .completed {
+    background-color: #7ea482;
+}
+/* ================================================ */
 
 .tab-content {
     height: 100%;
@@ -111,10 +150,15 @@
 }
 /* =================== DELETE BTN ================= */
 .show-page button.delete-btn {
-    color: var(--off-white);
+    border: none;
+    background-color: transparent;
+    width: 35px;
     position: absolute;
     bottom: 2rem;
     right: 2rem;
+}
+.show-page button.delete-btn img {
+    width: 100%;
 }
 @media only screen and (max-width: 900px) {
     .show-sidebar {
@@ -124,7 +168,7 @@
 
 @media only screen and (max-width: 600px) {
     .show-container {
-        margin: 4rem 1rem;
+        margin: 0 1rem;
         width: 100%;
         padding: 1rem;
     }
