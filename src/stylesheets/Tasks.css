@@ -6,16 +6,17 @@
     display: flex; 
     align-items: center;
     width: 100%;
+    margin: 1rem 0; 
 }
 .new-task-form-input {
-    width: 75%;
-    margin: 1rem; 
+    width: 100%;
     padding: 0.5rem;
     border-color: var(--body-font-color);
     border-radius: 5px;
     border-width: 1px;
 }
-.new-task-form-input:focus {
+.new-task-form-input:focus,
+.update-task-form-input:focus {
     outline: none;
 }
 /* ================ ADD TASK BTN ================== */
@@ -23,9 +24,11 @@
     /* height: 40px; */
     background-color: #7ea482;
     border-color: #7ea482;
-    color: var(--off-white)
+    color: var(--off-white);
+    margin: 0 0 0 1rem;
 }
-.new-task-form-container .new-task-form-btn:hover {
+.new-task-form-container .new-task-form-btn:hover,
+.update-task-form .update-task-btn:hover {
     color: var(--off-white);
 }
 /* =================== TASKS ====================== */
@@ -37,6 +40,7 @@
 }
 
 .task {
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -59,14 +63,42 @@ input.checkbox::before {
     display: flex;
     align-items: center;
 }
-
+/* =============== EDIT TASK FORM ================= */
+.update-task-form {
+    display: flex;
+    width: 100%;
+    margin: 1rem 0;
+}
+.update-task-form-input {
+    width: 100%;
+    border: 1px solid var(--body-font-color);
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+.update-task-form .update-task-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: #7ea482;
+    color: var(--off-white);
+    padding: 0.5rem;
+    margin: 0 0 0 1rem;
+}
+/* ==================TRASH BTN ==================== */
+.trash-btn {
+    background-color: transparent;
+    border: none;
+    width: 30px;
+}
+.trash-btn img {
+    width: 100%;
+}
 
 @media only screen and (max-width: 600px) {
     .new-task-form-input {
-        width: 60%;
+        /* width: 60%; */
     }
-    .new-task-form-btn {
-        font-size: smaller;
+    .new-task-form-container .new-task-form-btn {
+        font-size: 1rem;
     }
 }
 

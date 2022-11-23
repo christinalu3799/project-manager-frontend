@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
+import { useNavigate } from 'react-router-dom'
 import '../stylesheets/Tasks.css'
+import '../stylesheets/Logs.css'
 import UpdateTaskForm from './UpdateTaskForm'
-
+import EditIcon from '../static/editing.png'
+import TrashIcon from '../static/trash.png'
 const Tasks = (props) => {
     console.log('RENDERING TASKS')
     const [tasks, setTasks, getTasks] = useContext(TaskContext)
     
+    const navigate = useNavigate()
     // handle checking a task =========================================
     const handleCheckedTask = (e, task) => {
         let taskToUpdate = {
@@ -27,19 +31,38 @@ const Tasks = (props) => {
         })
     }
     // handle updating a task =========================================
-    // const [isUpdating, setIsUpdating] = useState(false)
     const [currentTask, setCurrentTask] = useState(null)
     const [updatingTask, setUpdatingTask] = useState(null)
     const handleUpdateTask = (e, task, id) => {
         setCurrentTask(id)
     }
-
+    
     const confirmTaskUpdate = () => {
-     
+        
         console.log('in confirmTaskUpdate')
         // setIsUpdating(false)
         setCurrentTask(null)
     }
+    // handle deleting a task =========================================
+    async function handleDeleteTask(id) {
+        console.log('task.id = ', id)
+        console.log(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${id}`)
+        try {
+            let response = await fetch(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                getTasks()
+            }
+
+        } catch(err) {
+            console.log('err: ', err)
+        }
+            
+        
+    }
+
     if (tasks !== null) {
         return (
             <div className='tasks-container'> 
@@ -48,8 +71,6 @@ const Tasks = (props) => {
                         <div key={task.id} className='task'>
                             {currentTask === task.id ? 
                             <>
-                                <p className='checkbox'>Updating</p>
-                                
                                 <UpdateTaskForm 
                                     task={task}
                                     confirmTaskUpdate={confirmTaskUpdate}
@@ -75,7 +96,14 @@ const Tasks = (props) => {
                                         {task.task}
                                     </p>
                                 </div>
-                                <button onClick={(e)=>handleUpdateTask(e, task, task.id)}>Edit Task</button>
+                                <div>
+                                    <button onClick={(e)=>handleUpdateTask(e, task, task.id)} className='edit-log-btn'>
+                                        <img src={EditIcon} alt='editing icon'/>
+                                    </button>
+                                    <button onClick={()=>handleDeleteTask(task.id)} className='trash-btn'>
+                                        <img src={TrashIcon} alt='trashbin icon'/>
+                                    </button>
+                                </div>
                             </>}
                         </div>
                     )

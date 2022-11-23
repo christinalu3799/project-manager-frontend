@@ -1,4 +1,5 @@
 import React from 'react'
+import '../stylesheets/Tasks.css'
 
 const UpdateTaskForm = (props) => {
 
@@ -11,12 +12,19 @@ const UpdateTaskForm = (props) => {
 
     const handleSubmitUpdateTask = (e) => {
         e.preventDefault()
+        let taskToUpdate
+        if (props.updatingTask === null) {
+            taskToUpdate = {
+                task: props.task.task
+            }
+        } else {
+            taskToUpdate = {
+                task: props.updatingTask
+            }
+        }
         fetch(`${props.baseURL}/api/v1/projects/tasks/${props.showProject.id}/${props.task.id}`, {
             method: 'PUT',
-            body: JSON.stringify({
-                task: props.updatingTask,
-            }
-            ),
+            body: JSON.stringify(taskToUpdate),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -30,7 +38,7 @@ const UpdateTaskForm = (props) => {
 
     }
     return (
-        <form onSubmit={handleSubmitUpdateTask}>
+        <form onSubmit={handleSubmitUpdateTask} className='update-task-form'>
             <input 
                 type="text" 
                 id="task" 
@@ -38,9 +46,9 @@ const UpdateTaskForm = (props) => {
                 placeholder="Add a to-do!"
                 onChange={handleChangeTask}
                 required
-                // className='new-task-form-input'
+                className='update-task-form-input'
             />
-            <button type='submit'>Confirm</button>
+            <button type='submit' className='update-task-btn'>Confirm</button>
         </form>
     )
 }

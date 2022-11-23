@@ -207,13 +207,13 @@ const Show = (props) => {
                             <Tab eventKey="profile" title="Tasks">
                                 <TaskProvider project_id={showProject.id}>
                                     <NewTaskForm baseURL={baseURL} showProject={showProject}/>
-                                    <Tasks baseURL={baseURL} showProject={showProject}/>
+                                    <Tasks baseURL={baseURL} showProject={showProject} getProjects={props.getProjects}/>
                                 </TaskProvider>
                             </Tab>
                             <Tab eventKey="contact" title="Log">
                                 <LogProvider project_id={showProject.id}>
                                     <NewLogForm baseURL={baseURL} showProject={showProject}/>
-                                    <Logs />
+                                    <Logs baseURL={baseURL} showProject={showProject}/>
                                 </LogProvider>
                             </Tab>
                         </Tabs>

@@ -44,7 +44,7 @@ const NewTaskForm = (props) => {
                 />
                     
                 <Button variant='success' type="submit" className='new-task-form-btn'>
-                    Add Task
+                    +
                 </Button>
             </form>
         </div>

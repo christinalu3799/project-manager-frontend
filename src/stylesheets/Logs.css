@@ -21,7 +21,7 @@
 .new-log-form-input:focus {
     outline: none;
 }
-/* ================ ADD TASK BTN ================== */
+/* ================ ADD LOG BTN ================== */
 .new-log-form-container .new-log-form-btn {
     /* height: 40px; */
     background-color: #7ea482;
@@ -33,6 +33,8 @@
 }
 
 .log {
+    display: flex; 
+    flex-direction: column;
     margin: 1.5rem 0;
     background-color: var(--off-white);
     padding: 1rem;
@@ -42,4 +44,31 @@
 }
 .log .time {
     font-weight: bold;
+}
+/* ============== UPDATE LOG BTN ================= */
+.log .update-log-form-btn {
+    border: none; 
+    background-color: #7ea482;
+    border-color: #7ea482;
+    color: var(--off-white);
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+.log .update-log-form-btn:hover {
+    color: var(--off-white);
+}
+
+.edit-log-btn {
+    border: none;
+    width: 30px;
+    align-self: flex-end;
+}
+.edit-log-btn img {
+    width: 100%;
+}
+.log .cancel-update-log {
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(--main-bg-color);
 }
