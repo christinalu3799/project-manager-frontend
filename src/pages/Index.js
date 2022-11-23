@@ -12,14 +12,16 @@ const Index = (props) => {
                 <h4>Welcome back {props.user}! Let's get to work. </h4>
                 <div className='project-container'>
                 {props.projects.map((project) => {
-                    return (
-                        <ProjectCard 
-                            key={project.id}
-                            project={project}
-                            showId={props.showId}
-                            setShowId={props.setShowId}
-                        />
-                    )
+                    if (project.project_status !== 'deleted' && project.project_status !== 'completed') {
+                        return (
+                            <ProjectCard 
+                                key={project.id}
+                                project={project}
+                                showId={props.showId}
+                                setShowId={props.setShowId}
+                            />
+                        )
+                    }
                 })}
                 </div>
             </div>

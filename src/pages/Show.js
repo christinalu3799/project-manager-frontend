@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Tabs, Tab } from 'react-bootstrap'
 import '../stylesheets/Show.css'
 import '../stylesheets/NewProject.css'
@@ -9,6 +10,7 @@ import Tasks from '../components/Tasks'
 import NewTaskForm from '../components/NewTaskForm'
 import Logs from '../components/Logs'
 import NewLogForm from '../components/NewLogForm'
+import SideBar from '../components/SideBar'
 import { TaskProvider } from '../contexts/TaskContext'
 import { LogProvider } from '../contexts/LogContext'
 import { useNavigate } from 'react-router-dom' 
@@ -26,10 +28,6 @@ const Show = (props) => {
     const navigate = useNavigate()
     // load project ================================================================================
     let showProject
-    // console.log('project.id = ', projects.id)
-    // console.log('props.showId = ', props.showId)
-    // console.log('props.projects = ', props.projects)
-
     try {
         showProject = props.projects.find(project => project.id === props.showId)
     } catch (error) {
@@ -40,15 +38,6 @@ const Show = (props) => {
     localStorage.setItem('showProject', JSON.stringify(showProject))
     localStorage.setItem('showId', JSON.stringify(props.showId))
 
-    // set projectToUpdate on page render ==========================================================
-    useEffect(() => {
-        props.setProjectToUpdate({
-            project_name: showProject.project_name,
-            project_deadline: showProject.project_deadline,
-            project_description: showProject.project_description,
-            project_status: 'deleted'
-        })
-    },[])
     // handle updating project =====================================================================
     const handleEditProject = () => {
         setIsEditing(true)
@@ -69,15 +58,17 @@ const Show = (props) => {
         e.preventDefault() 
         fetch(`${baseURL}/api/v1/projects/${props.showId}`, {
             method: 'PUT',
-            body: JSON.stringify(
-                props.projectToUpdate
-                ),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
+            body: JSON.stringify({
+                project_name: props.projectToUpdate.project_name,
+                project_deadline: props.projectToUpdate.project_deadline,
+                project_description: props.projectToUpdate.project_description,
+                project_status: props.projectToUpdate.project_status
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
             })
-            
             // call getProjects() from App.js to re-render state at top level
             props.getProjects()
             props.updateProject(props.showId)
@@ -88,31 +79,21 @@ const Show = (props) => {
    async function handleDeleteProject() {
         fetch(`${baseURL}/api/v1/projects/${props.showId}`, {
             method: 'PUT',
-            body: JSON.stringify(
-                props.projectToUpdate
-                ),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
+            body: JSON.stringify({
+                project_name: showProject.project_name,
+                project_deadline: showProject.project_deadline,
+                project_description: showProject.project_description,
+                project_status: 'deleted'
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
         })
         // call getProjects() from App.js to re-render state at top level
         props.getProjects()
         props.updateProject(props.showId)
         navigate('/index')
-        // try {
-        //     let response = await fetch(`${baseURL}/api/v1/projects/${id}`, {
-        //     method: 'DELETE',
-        //     credentials: 'include'
-        //     })
-        //     if (response.ok) {
-        //         let body = await response.json()
-        //         props.getProjects()
-        //         navigate('/index')
-        //     }
-        // } catch (err) {
-        //     console.log('oops! you got an error! ', err)
-        // }
     }
     // =============================================================================================
         
@@ -120,7 +101,7 @@ const Show = (props) => {
         return (
                 <div className='show-page'>
                     <div className='show-sidebar'>
-                        
+                        <SideBar projects={props.projects}/>
                     </div>
     
                     <div className='show-container'> 

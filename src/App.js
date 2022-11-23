@@ -152,7 +152,7 @@ const App = () => {
 
     // deleted projects =============================================================
     const [deletedProjects, setDeletedProjects] = useState([])
-    
+
     // save user to localstorage ====================================================
     useEffect(() => {
         const loggedInUser = localStorage.getItem('user')
@@ -165,12 +165,6 @@ const App = () => {
         // save current show id to top level in app.js
         if (currentShowId) {
             setShowId(currentShowId)
-            try {
-                projects.map(p => console.log(p)) 
-            } catch (err) {
-                console.log('err = ', err)
-                console.log(projects)
-            }
         }   
     }, [])
     
@@ -224,10 +218,16 @@ const App = () => {
                     user={user}/>} />
 
                 <Route path='/completed-projects' element={<CompletedProjects 
-                    user={user} projects={projects}/>}/>
+                    user={user} 
+                    projects={projects}/>}/>
 
                 <Route path='/deleted-projects' element={<DeletedProjects 
-                    user={user}/>}/>
+                    user={user} 
+                    projects={projects} 
+                    getProjects={getProjects}
+                    baseURL={baseURL}
+                    updateProject={updateProject}
+                    />}/>
 
                 <Route path='/show/:id' element={<Show 
                     projects={projects}

@@ -1,9 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
+import DeletedProjectsContainer from '../components/DeletedProjectsContainer'
+import '../stylesheets/DeletedProjects.css'
 
 const DeletedProjects = (props) => {
+
     if (props.user !== undefined) {
         return (
-          <h1>DELETED PROJECTS</h1>
+            <div className='deleted-projects'>
+                <h1>DELETED PROJECTS</h1>
+                <DeletedProjectsContainer 
+                    projects={props.projects}
+                    getProjects={props.getProjects}
+                    baseURL={props.baseURL}
+                    replaceProject={props.replaceProject}
+                    updateProject={props.updateProject}
+                    />
+            </div>
         )
     } else {
         return (
