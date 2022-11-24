@@ -19,7 +19,9 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.completed-btns {
+    display: flex;
+}
 @media only screen and (max-width: 600px) {
     .completed-projects {
         padding: 0 1.5rem;

@@ -7,15 +7,17 @@ const SideBar = (props) => {
     return (
         <>
             {props.projects.map(project => {
-                return (
-                    <Link 
-                        key={project.id}
-                        to={`/show/${project.id}`}
-                        onClick={() => props.setShowId(project.id)}className='sidebar-nav'>
-                            {project.project_name}
-                        <StatusDots status={project.project_status}/>
-                    </Link>
-                )
+                if (project.project_status !== 'deleted' && project.project_status !== 'completed'){
+                    return (
+                        <Link 
+                            key={project.id}
+                            to={`/show/${project.id}`}
+                            onClick={() => props.setShowId(project.id)}className='sidebar-nav'>
+                                {project.project_name}
+                            <StatusDots status={project.project_status}/>
+                        </Link>
+                    )
+                }
             })}
         </>
     )

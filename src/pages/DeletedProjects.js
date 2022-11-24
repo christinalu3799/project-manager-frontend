@@ -7,12 +7,11 @@ const DeletedProjects = (props) => {
     if (props.user !== undefined) {
         return (
             <div className='deleted-projects'>
-                <h1>DELETED PROJECTS</h1>
+                <h1>Deleted Projects</h1>
                 <DeletedProjectsContainer 
                     projects={props.projects}
                     getProjects={props.getProjects}
                     baseURL={props.baseURL}
-                    replaceProject={props.replaceProject}
                     updateProject={props.updateProject}
                     />
             </div>

@@ -6,9 +6,13 @@ const CompletedProjects = (props) => {
     if (props.user !== undefined) {
         return (
             <div className='completed-projects'>
-                <h1>COMPLETED PROJECTS</h1>
-                <h4>Celebrate your accomplishments - woo!</h4>
-                <CompleteProjectsContainer projects={props.projects}/>
+                <h1>Completed Projects</h1>
+                <h4>Celebrate your accomplishments! ☺️</h4>
+                <CompleteProjectsContainer 
+                    projects={props.projects}
+                    getProjects={props.getProjects}
+                    baseURL={props.baseURL}
+                    updateProject={props.updateProject}/>
             </div>
         )
     } else {

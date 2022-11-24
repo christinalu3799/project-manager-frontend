@@ -41,14 +41,12 @@ const DeletedProjectsContainer = (props) => {
                                 <div className='update-btns'>
                                     <button 
                                         className='put-back-btn'
-                                        onClick={() => handlePutBackProject(project)}
-                                        >
+                                        onClick={() => handlePutBackProject(project)}>
                                             Put Back
                                     </button>
                                     <button 
                                         className='put-back-btn delete-forever-btn'
-                                        onClick={() => permanentlyDelete(project)}
-                                        >
+                                        onClick={() => permanentlyDelete(project)}>
                                             Delete Forever
                                     </button>
                                 </div>

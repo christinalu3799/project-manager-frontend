@@ -219,15 +219,18 @@ const App = () => {
 
                 <Route path='/completed-projects' element={<CompletedProjects 
                     user={user} 
-                    projects={projects}/>}/>
+                    projects={projects}
+                    getProjects={getProjects}
+                    baseURL={baseURL}
+                    updateProject={updateProject}/>}/>
 
                 <Route path='/deleted-projects' element={<DeletedProjects 
                     user={user} 
                     projects={projects} 
                     getProjects={getProjects}
                     baseURL={baseURL}
-                    updateProject={updateProject}
-                    />}/>
+                    updateProject={updateProject}/>}/>
+
                 <Route path='/show/:id' element={<Show 
                     projects={projects}
                     setProjects={setProjects}
@@ -237,7 +240,7 @@ const App = () => {
                     updateProject={updateProject}
                     projectToUpdate={projectToUpdate}
                     setProjectToUpdate={setProjectToUpdate}/>}/>
-                {/* </Route> */}
+                    
                 <Route path='/register' element={<RegisterUser 
                     register={register} 
                     registerSuccess={registerSuccess}/>} />

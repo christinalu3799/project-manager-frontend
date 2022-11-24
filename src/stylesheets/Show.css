@@ -111,6 +111,9 @@
 }
 
 /* =================== EDIT BTN =================== */
+.update-btns {
+    align-items: center;
+}
 .show-page button.edit-btn {
     position: absolute;
     left: 2rem;
