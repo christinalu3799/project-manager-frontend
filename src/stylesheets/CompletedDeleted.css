@@ -1,0 +1,93 @@
+.completed-projects {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.completed-projects h1 {
+    margin: 4rem 0 2rem 0;
+}
+.completed-project-card {
+    background-color: var(--off-white);
+    filter: drop-shadow(5px 5px 5px #cacaca);
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.completed-btns {
+    display: flex;
+}
+.deleted-projects {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 100%;
+}
+.deleted-projects h1 {
+    margin: 4rem 0 2rem 0;
+}
+/* ================================================ */
+/* ================= DARK THEME =================== */
+/* ================================================ */
+.dark .deleted-projects h3,
+.dark .completed-project-card h3 {
+    color: var(--body-font-color);
+}
+.dark .deleted-project,
+.dark .completed-project-card {
+    filter: drop-shadow(5px 5px 5px var(--dark-drop-shadow));
+}
+/* ================================================ */
+.deleted-project {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    background-color: var(--off-white);
+    padding: 1rem;
+    border-radius: 5px;
+    filter: drop-shadow(5px 5px 5px #cacaca);
+}
+.put-back-btn {
+    font-size: 1.1rem;
+    border: none;
+    background-color: var(--body-font-color);
+    color: var(--off-white);
+    border-radius: 5px;
+    padding: 0 1rem;
+    height: 40px;
+}
+
+.delete-forever-btn {
+    background-color: var(--notstarted);
+    margin: 0 0 0 1rem;
+}
+.deleted-projects .update-btns {
+    display: flex;
+}
+@media only screen and (max-width: 600px) {
+    .completed-projects {
+        padding: 0 1.5rem;
+    }
+    .completed-projects h1 {
+        margin: 3rem 0 2rem 0;
+        font-size: 2.5rem;
+    }
+    .deleted-projects {
+        padding: 0 1.5rem;
+    }
+    .deleted-projects h1 {
+        margin: 3rem 0 2rem 0;
+        font-size: 2.5rem;
+    }
+    .deleted-project {
+        flex-direction: column;
+    }
+    .deleted-projects .update-btns {
+        margin: 0.5rem 0 0 0;
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
-import '../stylesheets/Tasks.css'
 import Button from 'react-bootstrap/Button'
 
 const NewTaskForm = (props) => {

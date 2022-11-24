@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { TaskContext } from '../contexts/TaskContext'
-import '../stylesheets/Tasks.css'
-import '../stylesheets/Logs.css'
 import UpdateTaskForm from './UpdateTaskForm'
 import EditIcon from '../static/editing.png'
 import TrashIcon from '../static/trash.png'

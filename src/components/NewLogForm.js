@@ -1,6 +1,5 @@
 import React,  { useState, useContext } from 'react'
 import { LogContext } from '../contexts/LogContext'
-import '../stylesheets/Logs.css'
 import Button from 'react-bootstrap/Button'
 
 const NewLogForm = (props) => {

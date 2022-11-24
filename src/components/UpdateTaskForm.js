@@ -1,5 +1,4 @@
 import React from 'react'
-import '../stylesheets/Tasks.css'
 
 const UpdateTaskForm = (props) => {
 

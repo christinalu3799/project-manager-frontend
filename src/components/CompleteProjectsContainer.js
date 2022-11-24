@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import StatusIcons from './StatusIcons'
-import '../stylesheets/CompletedProjects.css'
+import '../stylesheets/CompletedDeleted.css'
 
 const CompleteProjectsContainer = (props) => {
 

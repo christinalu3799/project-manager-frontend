@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { LogContext } from '../contexts/LogContext'
 import EditIcon from '../static/editing.png'
-import '../stylesheets/Logs.css'
 import UpdateLogForm from './UpdateLogForm'
 import TrashIcon from '../static/trash.png'
 const Logs = (props) => {

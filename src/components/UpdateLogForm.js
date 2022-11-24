@@ -1,6 +1,4 @@
 import React from 'react'
-import '../stylesheets/Logs.css'
-import Button from 'react-bootstrap/Button';
 
 const UpdateLogForm = (props) => {
 

@@ -6,23 +6,40 @@
     --off-white: #F4F4F4;
     --nav-bg-color: #BCC6C5;
     --body-font-color: #494949;
-    --on-hover: #727272;
+    /* project status colors */
+    --notstarted: #BF7659; 
+    --inprogress: #D59C5A;
+    --completed: #7ea482;
+
+    --submit-btn-color: #7ea482;
+
+    /* dark theme colors */
+    --dark-nav-bg-color: #101518;
+    --dark-bg-color: #1B2225;
+    --dark-project-card: #5b5a5f;
+    --dark-drop-shadow: #1c1c1c;
+}
+/* ============= LIGHT/DARK THEME =============== */
+.dark {
+    background-color: var(--dark-bg-color);
+    color: var(--off-white);
+}
+.light {
+    background-color: var(--main-bg-color);
+    color: var(--body-font-color);
 }
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    /* height: 100vh; */
-    min-height: 100vh;
-    background-color: var(--main-bg-color);
-    color: var(--body-font-color);
+    /* min-height: 100vh; */
+    /* background-color: var(--main-bg-color); */
     box-sizing: border-box;
 }
 .mono {
     font-family: 'Source Code Pro', monospace;
 }
-
 h1 {
     font-size: 3.5rem;
 }
@@ -47,15 +64,25 @@ p {
     color: rgba(255,255,255,0.55);
     text-decoration: none;
 }
+
+.dark .nav-link,
+.dark .navbar-nav .show>.nav-link,
+.dark .navbar-brand {
+    color: var(--off-white);
+}
 .navbar-brand {
     font-size: 2rem;
 }
-.navbar {
+.light .navbar {
     background-color: var(--nav-bg-color);
     width: 100%;
     font-size: 1.25rem;
 }
-
+.dark .navbar {
+    background-color: var(--dark-nav-bg-color);
+    width: 100%;
+    font-size: 1.25rem;
+}
 .dropdown-menu.show {
     width: fit-content;
 }

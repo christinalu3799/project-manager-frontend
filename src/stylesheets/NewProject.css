@@ -24,18 +24,18 @@
 }
 
 .new-project-btn {
-    background-color: #7ea482;
-    border-color: #7ea482;
+    background-color: var(--submit-btn-color);
+    border-color: var(--submit-btn-color);
     color: var(--off-white)
 }
 .new-project-btn:hover {
     color: var(--off-white);
-    background-color: #7ea482;
-    border-color: #7ea482;
+    background-color: var(--submit-btn-color);
+    border-color: var(--submit-btn-color);
 }
 .btn.new-project-btn:active {
-    background-color: #68856b;
-    border-color: #7ea482;
+    background-color: var(--submit-btn-color);
+    border-color: var(--submit-btn-color);
 }
 @media only screen and (max-width: 600px) {
     .new-project {

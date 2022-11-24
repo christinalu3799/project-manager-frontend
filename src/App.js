@@ -15,7 +15,6 @@ import NewProject from './pages/NewProject';
 import CompletedProjects from './pages/CompletedProjects'
 import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
-import ShowPage from './pages/ShowPage';
 import NotFound from './pages/NotFound'
 import Logo from './static/iteration.png'
 // ==================================================================================
@@ -28,10 +27,22 @@ console.log('baseURL: ', baseURL)
 
 const App = () => {
     console.log('------------------RENDERING APP.JS----------------')
+    // set theme ====================================================================
+    const [theme, setTheme] = useState('light')
+    const toggleTheme = () => {
+        if (theme === 'light') {
+            setTheme('dark')
+        } else {
+            setTheme('light')
+        }
+    }
+    useEffect(() => {
+        document.body.className = theme;
+        }, [theme]);
     const navigate = useNavigate()
     const [user, setUser] = useState()
-    
     // get all projects =============================================================
+    
     const [projects, setProjects] = useState(null)
     let GET_URL 
     process.env.REACT_APP_NODE_ENV === 'development'
@@ -191,12 +202,14 @@ const App = () => {
                                 <>
                                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                    <button onClick={() => toggleTheme()}>Toggle Theme</button>
                                 </>
                                 :
                                 <>
                                     <NavDropdown title={`Logged in as: ${user}`} className='custom-nav-dropdown'>
                                         <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                     </NavDropdown>
+                                    <button onClick={() => toggleTheme()}>Toggle Theme</button>
                                 </>
                             }
                         </Nav>
@@ -240,7 +253,7 @@ const App = () => {
                     updateProject={updateProject}
                     projectToUpdate={projectToUpdate}
                     setProjectToUpdate={setProjectToUpdate}/>}/>
-                    
+
                 <Route path='/register' element={<RegisterUser 
                     register={register} 
                     registerSuccess={registerSuccess}/>} />

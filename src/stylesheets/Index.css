@@ -31,16 +31,27 @@
     flex-wrap: wrap;
     width: 100%;
 }
+.dark .project-card {
+    background-color: var(--dark-project-card);
+    filter: drop-shadow(5px 5px 5px var(--dark-drop-shadow));
+}
+.light .project-card {
+    background-color: var(--off-white);
+    filter: drop-shadow(5px 5px 5px #cacaca);
+}
 .project-card {
     display: flex;
     flex-direction: column;
     width: 275px;
     height: fit-content;
-    background-color: var(--off-white);
+    /* background-color: var(--off-white); */
     margin: 0.5rem;
     padding: 1rem;
-    filter: drop-shadow(5px 5px 5px #cacaca);
+    /* filter: drop-shadow(5px 5px 5px #cacaca); */
     border-radius: 10px;
+}
+.dark .show-card-link {
+    color: var(--off-white)
 }
 .show-card-link {
     color: var(--body-font-color);

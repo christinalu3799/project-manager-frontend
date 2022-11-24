@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import DeletedProjectsContainer from '../components/DeletedProjectsContainer'
-import '../stylesheets/DeletedProjects.css'
+import '../stylesheets/CompletedDeleted.css'
 
 const DeletedProjects = (props) => {
 

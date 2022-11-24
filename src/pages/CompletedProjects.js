@@ -1,6 +1,6 @@
 import React from 'react'
 import CompleteProjectsContainer from '../components/CompleteProjectsContainer';
-import '../stylesheets/CompletedProjects.css'
+import '../stylesheets/CompletedDeleted.css'
 
 const CompletedProjects = (props) => {
     if (props.user !== undefined) {
