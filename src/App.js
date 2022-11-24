@@ -16,7 +16,9 @@ import CompletedProjects from './pages/CompletedProjects'
 import DeletedProjects from './pages/DeletedProjects';
 import Show from './pages/Show'
 import NotFound from './pages/NotFound'
-import Logo from './static/iteration.png'
+import LogoWhite from './static/logo-white.png'
+import LogoBlack from './static/logo-black.png'
+import Switch from 'react-switch'
 // ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -29,10 +31,13 @@ const App = () => {
     console.log('------------------RENDERING APP.JS----------------')
     // set theme ====================================================================
     const [theme, setTheme] = useState('light')
+    const [checked, setChecked] = useState(false)
     const toggleTheme = () => {
         if (theme === 'light') {
+            setChecked(false)
             setTheme('dark')
         } else {
+            setChecked(true)
             setTheme('light')
         }
     }
@@ -185,7 +190,9 @@ const App = () => {
             <Navbar collapseOnSelect expand="lg" >
                 <Container className='nav-container'>
                     <Navbar.Brand as={Link} to="/index">
-                        <img src={Logo} alt='project manager logo' className='logo'/>
+                        <img src={LogoWhite} alt='project manager logo' className='logo logo-white'/>
+                        <img src={LogoBlack} alt='project manager logo' className='logo logo-black'/>
+                    
                         Project Manager
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -202,14 +209,25 @@ const App = () => {
                                 <>
                                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                                    <button onClick={() => toggleTheme()}>Toggle Theme</button>
+                                    {/* <button onClick={() => toggleTheme()}>Toggle Theme</button> */}
+                                    
                                 </>
                                 :
                                 <>
                                     <NavDropdown title={`Logged in as: ${user}`} className='custom-nav-dropdown'>
                                         <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                     </NavDropdown>
-                                    <button onClick={() => toggleTheme()}>Toggle Theme</button>
+                                    {/* <button onClick={() => toggleTheme()}>Toggle Theme</button> */}
+                                    <div className='theme-toggler'>
+                                        <Switch 
+                                            onChange={() => toggleTheme()} 
+                                            checked={checked} 
+                                            onColor='#494949'
+                                            checkedIcon={false}
+                                            uncheckedIcon={false}
+                                            offColor='#b2bdbc'
+                                            />
+                                    </div>
                                 </>
                             }
                         </Nav>

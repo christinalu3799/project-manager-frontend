@@ -47,6 +47,9 @@
     border-radius: 5px;
     filter: drop-shadow(2px 5px 5px #cacaca);
 }
+.dark .show-sidebar .sidebar-nav {
+    filter: drop-shadow(5px 5px 5px var(--dark-drop-shadow));
+}
 .show-sidebar .sidebar-nav {
     display: flex;
     justify-content: space-between;
@@ -78,8 +81,26 @@
     background-color: var(--completed);
 }
 /* ================================================ */
+.mb-3 {
+    margin-bottom: 0!important;
+}
+.show-page .nav-item .active {
+    background-color: #fcfbfb;
+}
+.dark .tab-content {
+    color: var(--body-font-color);
+}
 .tab-content {
+    background-color: #fcfbfb;
     height: 100%;
+    padding: 1.5rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-color: #dee2e6;
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
 }
 .show-page button {
     color: var(--body-font-color);
@@ -125,8 +146,8 @@
     background-color: transparent;
     filter: drop-shadow(1px 1px 1px #ffffff);
     position: absolute;
-    left: 2rem;
-    bottom: 2rem;
+    left: 3rem;
+    bottom: 3rem;
     border: none;
     width: 30px;
 }
@@ -138,6 +159,9 @@
     display: flex;
     flex-direction: column;
 
+}
+.show-page .update-project-form .update-form-input {
+    margin-bottom: 1rem!important;
 }
 .update-project-form textarea {
     height: 250px;
@@ -166,8 +190,8 @@
     background-color: transparent;
     width: 35px;
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 3rem;
+    right: 3rem;
     filter: drop-shadow(1px 1px 1px #ffffff);
 }
 .show-page button.delete-btn img {

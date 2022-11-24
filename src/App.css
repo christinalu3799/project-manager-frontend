@@ -4,7 +4,7 @@
 :root {
     --main-bg-color: #EBE7E3;
     --off-white: #F4F4F4;
-    --nav-bg-color: #BCC6C5;
+    --nav-bg-color: #b2bdbc;
     --body-font-color: #494949;
     /* project status colors */
     --notstarted: #BF7659; 
@@ -15,11 +15,16 @@
 
     /* dark theme colors */
     --dark-nav-bg-color: #101518;
-    --dark-bg-color: #1B2225;
-    --dark-project-card: #5b5a5f;
+    --dark-bg-color: #1b2225;
+    --dark-project-card: #2d383d;
     --dark-drop-shadow: #1c1c1c;
 }
 /* ============= LIGHT/DARK THEME =============== */
+.navbar-nav .theme-toggler {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
 .dark {
     background-color: var(--dark-bg-color);
     color: var(--off-white);
@@ -29,13 +34,18 @@
     color: var(--body-font-color);
 }
 .main {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    /* min-height: 100vh; */
     /* background-color: var(--main-bg-color); */
     box-sizing: border-box;
+    
+    /* min-height: 100vh;
+    background-image: url('./static/blob-scene-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 .mono {
     font-family: 'Source Code Pro', monospace;
@@ -60,6 +70,12 @@ p {
 .logo {
     margin: 0 1rem;
 }
+.dark .logo-black {
+    display: none;
+}
+.light .logo-white {
+    display: none
+}
 .nav-item {
     color: rgba(255,255,255,0.55);
     text-decoration: none;
@@ -82,6 +98,10 @@ p {
     background-color: var(--dark-nav-bg-color);
     width: 100%;
     font-size: 1.25rem;
+}
+.navbar .dropdown-item:active {
+    color: var(--body-font-color);
+    background-color: transparent;
 }
 .dropdown-menu.show {
     width: fit-content;

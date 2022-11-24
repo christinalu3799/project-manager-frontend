@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../stylesheets/NewProject.css'
 import { useNavigate } from 'react-router-dom'
+import DatePicker from 'react-datepicker'
 
 let baseURL
 // process.env.NODE_ENV = 'production'
@@ -11,6 +12,7 @@ process.env.REACT_APP_NODE_ENV === 'development'
 : (baseURL = process.env.REACT_APP_BACKEND_URL)    
 
 const NewProjectForm = (props) => {
+    const [deadline, setDeadline] = useState(new Date());
     const navigate = useNavigate()
 
     const [newProject, setNewProject] = useState({
@@ -22,7 +24,7 @@ const NewProjectForm = (props) => {
 
     const handleChange = (e) => {
         e.preventDefault() 
-        setNewProject({...newProject, [e.target.id]: e.target.value})
+        setNewProject({...newProject, [e.target.id]: e.target.value, project_deadline:deadline.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) })
     }
 
     const handleSubmit = (e) => {
@@ -51,29 +53,39 @@ const NewProjectForm = (props) => {
     }
     return (
         <Form onSubmit={handleSubmit} className='new-project-form'>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 new-project-form-input">
+                <label for='project_name'>Project Name:</label>
                 <Form.Control 
                     type="text" 
                     id='project_name'
                     onChange={handleChange}
-                    placeholder="Project Name"
+                    // placeholder="Project Name"
                     required/>
             </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Control 
+            <Form.Group className="mb-3 new-project-form-input">
+                <label for='project_deadling'>Deadline:</label>
+                <DatePicker 
+                    selected={deadline} 
+                    onChange={(date:Date) => setDeadline(date)} 
+                    id='project_deadline'
+                    className='datepicker'
+                    />
+                {/* <Form.Control 
                     type="text" 
                     id='project_deadline'
                     onChange={handleChange}
-                    placeholder="Project Deadline"/>
+                    placeholder="Project Deadline"/> */}
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 new-project-form-input">
+                <label for='project_description'>Description:</label>
                 <Form.Control as='textarea'
                     type="text" 
                     id='project_description'
                     onChange={handleChange}
-                    placeholder="Project Description"/>
+                    // placeholder="Project Description"
+                    />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 new-project-form-input">
                 <Form.Select
                     type="text" 
                     id='project_status'
@@ -84,7 +96,6 @@ const NewProjectForm = (props) => {
                     <option value='completed'>Completed</option>
                 </Form.Select>
             </Form.Group>
-            
             <Button type="submit" className='new-project-btn'>
                 Create New Project
             </Button>

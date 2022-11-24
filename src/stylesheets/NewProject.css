@@ -3,11 +3,21 @@
     width: 100%;
     justify-content: center;
 }
+.new-project-container .new-project .new-project-form .new-project-form-input {
+    margin-bottom: 1rem!important;
+}
 /* only for handwritten font =============== */
 .form-control {
     font-size: 1.25rem;
 }
 /* ========================================= */
+.datepicker {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+
+}
 .new-project {
     display: flex;
     flex-direction: column;
@@ -17,7 +27,7 @@
     max-width: 1000px;
 }
 .new-project h1 {
-    margin: 2rem 0;
+    margin: 2rem 0 1rem;
 }
 .new-project-form {
     width: 500px;

@@ -15,7 +15,7 @@ import { LogProvider } from '../contexts/LogContext'
 import { useNavigate } from 'react-router-dom' 
 import EditIcon from '../static/editing.png'
 import TrashIcon from '../static/trash.png'
-
+import DatePicker from 'react-datepicker'
 // set up baseURL ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -24,6 +24,8 @@ process.env.REACT_APP_NODE_ENV === 'development'
 
 const Show = (props) => {
     console.log('------------------RENDERING SHOW.JS----------------')
+    const [deadline, setDeadline] = useState(new Date());
+
     const [key, setKey] = useState('home');
     const [isEditing, setIsEditing] = useState(false)
     const navigate = useNavigate()
@@ -52,7 +54,7 @@ const Show = (props) => {
     
     const handleChangeProject = (e) => {
         e.preventDefault()
-        props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value})
+        props.setProjectToUpdate({...props.projectToUpdate, [e.target.id]: e.target.value, project_deadline: deadline})
     }
     
     const handleUpdateProject = (e) => {
@@ -61,7 +63,8 @@ const Show = (props) => {
             method: 'PUT',
             body: JSON.stringify({
                 project_name: props.projectToUpdate.project_name,
-                project_deadline: props.projectToUpdate.project_deadline,
+                project_deadline: deadline.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) ,
+                // project_deadline: props.projectToUpdate.project_deadline,
                 project_description: props.projectToUpdate.project_description,
                 project_status: props.projectToUpdate.project_status
             }),
@@ -120,7 +123,7 @@ const Show = (props) => {
                                     {isEditing ? 
                                     <>
                                     <Form onSubmit={handleUpdateProject} className='update-project-form'>
-                                        <Form.Group className="mb-3">
+                                        <Form.Group className="mb-3 update-form-input">
                                             <Form.Control 
                                                 type="text" 
                                                 id='project_name'
@@ -129,15 +132,22 @@ const Show = (props) => {
                                                 defaultValue={showProject.project_name}
                                                 required/>
                                         </Form.Group>
-                                        <Form.Group className="mb-3">
-                                            <Form.Control 
+                                        <Form.Group className="mb-3 update-form-input">
+                                            <label for='project_deadling'>Deadline:</label>
+                                            <DatePicker 
+                                                selected={deadline} 
+                                                onChange={(date:Date) => setDeadline(date)} 
+                                                id='project_deadline'
+                                                className='datepicker'
+                                                />
+                                            {/* <Form.Control 
                                                 type="text" 
                                                 id='project_deadline'
                                                 onChange={handleChangeProject}
                                                 placeholder="Project Deadline"
-                                                defaultValue={showProject.project_deadline}/>
+                                                defaultValue={showProject.project_deadline}/> */}
                                         </Form.Group>
-                                        <Form.Group className="mb-3">
+                                        <Form.Group className="mb-3 update-form-input">
                                             <Form.Control as='textarea'
                                                 type="text" 
                                                 id='project_description'
@@ -146,7 +156,7 @@ const Show = (props) => {
                                                 defaultValue={showProject.project_description}
                                                 className='update-project-form-textarea'/>
                                         </Form.Group>
-                                        <Form.Group className="mb-3">
+                                        <Form.Group className="mb-3 update-form-input">
                                             <Form.Select
                                                 type="text" 
                                                 id='project_status'
