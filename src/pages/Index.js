@@ -8,7 +8,7 @@ const Index = (props) => {
         return (
         <div className='index'>
             <div className='index-container'>
-                <h1 className='animate__animated animate__fadeIn'>Dashboard</h1>
+                <h1 className='animate__animated animate__fadeIn'>Project Dashboard</h1>
                 <h4 className='animate__animated animate__fadeIn'>Welcome back {props.user}! Let's get to work. </h4>
                 <div className='project-container'>
                 {props.projects.map((project) => {

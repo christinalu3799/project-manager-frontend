@@ -32,7 +32,7 @@ const CompleteProjectsContainer = (props) => {
                         return (
                             <div key={project.id} className='completed-project-card'>
                                 <div style={{'display': 'flex', 'align-items': 'center','height':'3rem'}}>
-                                    <h3 style={{'margin': '0 2rem 0 0'}}>{project.project_name}</h3>
+                                    <h4 style={{'margin': '0 2rem 0 0'}}>{project.project_name}</h4>
                                     <StatusIcons status={project.project_status}/>
                                 </div>
                                 <div className='completed-btns update-btns'>

@@ -37,7 +37,7 @@ const DeletedProjectsContainer = (props) => {
                     if(project.project_status === 'deleted') {
                         return (
                             <div key={project.id} className='deleted-project'>
-                                <h3>{project.project_name}</h3>
+                                <h4>{project.project_name}</h4>
                                 <div className='update-btns'>
                                     <button 
                                         className='put-back-btn'

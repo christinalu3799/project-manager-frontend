@@ -104,13 +104,9 @@ const App = () => {
     const [loginSuccess, setLogin] = useState(null)
     const login = (e) => {
         e.preventDefault(e)
-        // console.log(e.target.username.value)
-        // console.log(e.target.email.value)
-        // console.log(e.target.password.value)
         fetch(`${baseURL}/api/v1/users/login`, {
             method: 'POST',
             body: JSON.stringify({
-                // username: e.target.username.value,
                 email: e.target.email.value,
                 password: e.target.password.value
             }),
@@ -166,10 +162,6 @@ const App = () => {
         setProjects(copyProjects)
         getProjects()
     }
-
-    // deleted projects =============================================================
-    const [deletedProjects, setDeletedProjects] = useState([])
-
     // save user to localstorage ====================================================
     useEffect(() => {
         const loggedInUser = localStorage.getItem('user')
@@ -190,11 +182,10 @@ const App = () => {
         <div className='main handwritten'>
             <Navbar collapseOnSelect expand="lg" >
                 <Container className='nav-container'>
-                    <Navbar.Brand as={Link} to="/index">
+                    <Navbar.Brand as={Link} to="/index" style={{'font-family': 'Nerko One, cursive'}} className='app-title'>
                         <img src={LogoWhite} alt='project manager logo' className='logo logo-white'/>
                         <img src={LogoBlack} alt='project manager logo' className='logo logo-black'/>
-                    
-                        Project Manager
+                        simple tracker
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className='custom-nav'>
@@ -210,7 +201,6 @@ const App = () => {
                                 <>
                                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                                    {/* <button onClick={() => toggleTheme()}>Toggle Theme</button> */}
                                     
                                 </>
                                 :
@@ -218,7 +208,6 @@ const App = () => {
                                     <NavDropdown title={`Logged in as: ${user}`} className='custom-nav-dropdown'>
                                         <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                     </NavDropdown>
-                                    {/* <button onClick={() => toggleTheme()}>Toggle Theme</button> */}
                                 </>
                             }
                         </Nav>

@@ -62,7 +62,7 @@ const Logs = (props) => {
                             </>
                             :
                             <>
-                                    <p className='time'>{formattedDate} / {time}</p>
+                                    <p className='time'>{formattedDate}</p>
                                     <p>
                                         {log.log}
                                     </p>

@@ -328,10 +328,9 @@ input.checkbox::before {
     display: flex; 
     flex-direction: column;
     margin: 1.5rem 0;
-    background-color: var(--off-white);
+    background-color: #e5e4e3;
     padding: 1rem;
     border-radius: 5px;
-    /* border: 1px solid var(--body-font-color); */
     filter: drop-shadow(2px 5px 5px #cacaca);
 }
 .log .time {
