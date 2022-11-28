@@ -53,3 +53,6 @@ Outside of GA, I am an independent contractor/freelancer providing editing and p
 - Allow the user to upload files from Google Drive, DropBox, OneDrive, etc (will be using a file upload API for this).
 - Make fully responsive on all devices.
 - Allow user to search for projects/tasks/project details by keyword.
+
+--- 
+👉🏼 [Click here to view my backend repo](https://github.com/christinalu3799/project-manager-backend)
