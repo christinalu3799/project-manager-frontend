@@ -8,8 +8,8 @@ const Index = (props) => {
         return (
         <div className='index'>
             <div className='index-container'>
-                <h1>{`Dashboard`}</h1>
-                <h4>Welcome back {props.user}! Let's get to work. </h4>
+                <h1 className='animate__animated animate__fadeIn'>Dashboard</h1>
+                <h4 className='animate__animated animate__fadeIn'>Welcome back {props.user}! Let's get to work. </h4>
                 <div className='project-container'>
                 {props.projects.map((project) => {
                     if (project.project_status !== 'deleted' && project.project_status !== 'completed') {
@@ -29,7 +29,7 @@ const Index = (props) => {
         )
     } else {
         return(
-            <div className='not-logged-in'>
+            <div className='not-logged-in '>
                 <h4>
                     Please Register/Login to start tracking your projects!
                 </h4>

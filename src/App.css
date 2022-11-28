@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 :root {
-    --main-bg-color: #EBE7E3;
+    --main-bg-color: #ebe7e4;
     --off-white: #F4F4F4;
-    --nav-bg-color: #b2bdbc;
+    --nav-bg-color: #d6d0ca;
     --body-font-color: #494949;
     /* project status colors */
     --notstarted: #BF7659; 
@@ -20,10 +20,11 @@
     --dark-drop-shadow: #1c1c1c;
 }
 /* ============= LIGHT/DARK THEME =============== */
-.navbar-nav .theme-toggler {
+.theme-toggler {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+    z-index: 10;
 }
 .dark {
     background-color: var(--dark-bg-color);
@@ -33,19 +34,17 @@
     background-color: var(--main-bg-color);
     color: var(--body-font-color);
 }
+
+/* ============= =REGISTER/LOGIN ================ */
+
+/* ============================================== */
 .main {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    /* background-color: var(--main-bg-color); */
     box-sizing: border-box;
-    
-    /* min-height: 100vh;
-    background-image: url('./static/blob-scene-haikei.svg');
-    background-repeat: no-repeat;
-    background-size: cover; */
 }
 .mono {
     font-family: 'Source Code Pro', monospace;
@@ -80,7 +79,6 @@ p {
     color: rgba(255,255,255,0.55);
     text-decoration: none;
 }
-
 .dark .nav-link,
 .dark .navbar-nav .show>.nav-link,
 .dark .navbar-brand {

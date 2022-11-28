@@ -5,7 +5,7 @@ import '../stylesheets/CompletedDeleted.css'
 const CompletedProjects = (props) => {
     if (props.user !== undefined) {
         return (
-            <div className='completed-projects'>
+            <div className='completed-projects animate__animated animate__fadeIn'>
                 <h1>Completed Projects</h1>
                 <h4>Celebrate your accomplishments! ☺️</h4>
                 <CompleteProjectsContainer 
@@ -17,7 +17,7 @@ const CompletedProjects = (props) => {
         )
     } else {
         return (
-            <div className='not-logged-in completed-projects'>
+            <div className='not-logged-in animate__animated animate__fadeIn'>
                 <h4>
                     Please Register/Login to start tracking your projects!
                 </h4>

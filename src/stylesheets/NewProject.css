@@ -32,7 +32,21 @@
 .new-project-form {
     width: 500px;
 }
-
+.new-project-form .new-project-form-input textarea {
+    height: 200px;
+}
+.form-control:focus,
+.datepicker:focus {
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+.dark .new-project-form .new-project-form-input textarea, 
+.dark .new-project-form .new-project-form-input input,
+.dark .new-project-form .new-project-form-input select {
+    background-color: var(--dark-project-card);
+    border: none;
+    color: var(--off-white);
+}
 .new-project-btn {
     background-color: var(--submit-btn-color);
     border-color: var(--submit-btn-color);
@@ -48,6 +62,9 @@
     border-color: var(--submit-btn-color);
 }
 @media only screen and (max-width: 600px) {
+    .new-project h1 {
+        font-size: 2rem;
+    }
     .new-project {
         margin: 0 2rem;
     }

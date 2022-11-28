@@ -6,7 +6,7 @@ import StatusIcons from './StatusIcons'
 
 const ProjectCard = (props) => {
     return (
-        <div className='project-card'>
+        <div className='project-card animate__animated animate__flipInX'>
 
             <h3>{props.project.project_name}</h3>
             <p>DUE: {props.project.project_deadline}</p>

@@ -6,7 +6,7 @@ const DeletedProjects = (props) => {
 
     if (props.user !== undefined) {
         return (
-            <div className='deleted-projects'>
+            <div className='deleted-projects animate__animated animate__fadeIn'>
                 <h1>Deleted Projects</h1>
                 <DeletedProjectsContainer 
                     projects={props.projects}
@@ -18,7 +18,7 @@ const DeletedProjects = (props) => {
         )
     } else {
         return (
-            <div className='not-logged-in'>
+            <div className='not-logged-in animate__animated animate__fadeIn'>
                 <h4>
                     Please Register/Login to start tracking your projects!
                 </h4>

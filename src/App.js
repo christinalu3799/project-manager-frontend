@@ -1,19 +1,20 @@
-import React, { useEffect, useState} from 'react';
-import {Route, Routes, useNavigate, Link} from 'react-router-dom';
+import React, { useEffect, useState} from 'react'
+import {Route, Routes, useNavigate, Link} from 'react-router-dom'
+import 'animate.css'
 // import react-bootstrap components ===============================================
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 // import components ================================================================
-import Index from './pages/Index';
-import RegisterUser from './components/RegisterUser';
-import LoginUser from './components/LoginUser';
-import NewProject from './pages/NewProject';
+import Index from './pages/Index'
+import RegisterUser from './components/RegisterUser'
+import LoginUser from './components/LoginUser'
+import NewProject from './pages/NewProject'
 import CompletedProjects from './pages/CompletedProjects'
-import DeletedProjects from './pages/DeletedProjects';
+import DeletedProjects from './pages/DeletedProjects'
 import Show from './pages/Show'
 import NotFound from './pages/NotFound'
 import LogoWhite from './static/logo-white.png'
@@ -31,7 +32,7 @@ const App = () => {
     console.log('------------------RENDERING APP.JS----------------')
     // set theme ====================================================================
     const [theme, setTheme] = useState('light')
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(true)
     const toggleTheme = () => {
         if (theme === 'light') {
             setChecked(false)
@@ -218,22 +219,23 @@ const App = () => {
                                         <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
                                     </NavDropdown>
                                     {/* <button onClick={() => toggleTheme()}>Toggle Theme</button> */}
-                                    <div className='theme-toggler'>
-                                        <Switch 
-                                            onChange={() => toggleTheme()} 
-                                            checked={checked} 
-                                            onColor='#494949'
-                                            checkedIcon={false}
-                                            uncheckedIcon={false}
-                                            offColor='#b2bdbc'
-                                            />
-                                    </div>
                                 </>
                             }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            
+            <div className='theme-toggler'>
+                <Switch 
+                    onChange={() => toggleTheme()} 
+                    checked={checked} 
+                    onColor='#494949'
+                    checkedIcon={false}
+                    uncheckedIcon={false}
+                    offColor='#b2bdbc'
+                    />
+            </div>
 
             <Routes>
                 {/* HOME PAGE/PROJECT DASHBOARD */}

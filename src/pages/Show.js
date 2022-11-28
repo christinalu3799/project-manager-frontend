@@ -103,7 +103,7 @@ const Show = (props) => {
         
     if (showProject != null ) {
         return (
-                <div className='show-page'>
+                <div className='show-page animate__animated animate__slideInLeft'>
                     <div className='show-sidebar'>
                         <SideBar projects={props.projects} setShowId={props.setShowId}/>
                     </div>
@@ -170,13 +170,12 @@ const Show = (props) => {
                                             </Form.Select>
                                         </Form.Group>
                                         <div className='update-btns'>
-
-                                        <Button type="submit" className='update-btn'>
-                                            Update Project
-                                        </Button>
-                                        <Button className='discard-btn' onClick={() => setIsEditing()}>
-                                            Discard
-                                        </Button>
+                                            <Button type="submit" className='update-btn'>
+                                                Update Project
+                                            </Button>
+                                            <Button className='discard-btn' onClick={() => setIsEditing()}>
+                                                Discard
+                                            </Button>
                                         </div>
                                     </Form>
                                     </>
@@ -187,14 +186,16 @@ const Show = (props) => {
                                         <p>{showProject.project_description}</p>
                                             <br/>
                                         <StatusIcons status={showProject.project_status}/>
-                                        <button onClick={() => handleEditProject()} className='edit-btn'>
-                                            <img src={EditIcon}/>
-                                        </button>
-                                            <br/>
-                                            <br/>
-                                        <button onClick={()=> handleDeleteProject()} className='delete-btn'>
-                                            <img src={TrashIcon} alt='trash bin'/>
-                                        </button>
+                                        <div className='update-btns'>
+                                            <button onClick={() => handleEditProject()} className='edit-btn'>
+                                                <img src={EditIcon}/>
+                                            </button>
+                                                <br/>
+                                                <br/>
+                                            <button onClick={()=> handleDeleteProject()} className='delete-btn'>
+                                                <img src={TrashIcon} alt='trash bin'/>
+                                            </button>
+                                        </div>
                                     </>}
                                 </div>
                             </Tab>
