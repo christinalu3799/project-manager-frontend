@@ -1,10 +1,15 @@
 # Simple Tracker 
 #### A Project Manager Application for Independent Contractors and Small Business Owners
-
 ---
+[Click here to view application](https://projectxmanager.herokuapp.com/)
 ### Project Description
 
 Outside of GA, I am an independent contractor/freelancer providing editing and proofreading services for clients applying to college and other post graduate programs. Since the fall time is prime college application season, I wanted to create a simple project manager to keep track of each client I’m working with. I typically work with anywhere between 15-20 clients at a given time, each needing their essays reviewed within 3-5 days of sending their drafts to me. So, the aim of this application is to consolidate each project into cards onto a dashboard so I can easily see the status of all my current orders at a glance.  
+
+### To Run Locally 
+If you'd like to view this project on your local machine, first fork + clone down this repo. Open a new terminal window and navigate into the **project-manager-frontend** directory. Run ```npm start``` to start the application in your local server. 
+
+To run the server, [clone this backend repo](https://github.com/christinalu3799/project-manager-backend). In the terminal, ```cd``` into the **project-manager-backend** folder and run ```. venv/bin/activate``` to start the server. 
 
 ### Tech Stack
 
