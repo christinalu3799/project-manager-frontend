@@ -1,14 +1,17 @@
 .register {
-    height: 90vh;
+    height: calc(100vh - 90px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     width: 100%;
+}
+.light .register {
     background-image: url('../static/stacked-peaks-haikei.svg');
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 .register h1 {
     margin-bottom: 2rem;
@@ -35,16 +38,27 @@
 .register-form a:hover {
     color: #6f6f6f;
 }
+.dark .register-form a {
+    color: #cacaca;
+}
 .register-form > * {
     border-radius: 5px;
     border: 0;
     filter: drop-shadow(2px 5px 5px #cacaca);
+}
+.dark .register-form > * {
+    filter: drop-shadow(2px 5px 5px var(--dark-drop-shadow));
+
 }
 .register-input {
     width: 250px;
     padding: 0.5rem;
     margin: 0.5rem 0 0.5rem 0;
     outline: none;
+}
+.dark .register-submit-btn {
+    background-color: var(--off-white);
+    color: var(--body-font-color);
 }
 .register-submit-btn {
     margin: 1rem 0;
