@@ -26,15 +26,16 @@ const StatusIcons = (props) => {
                 </p>
             </div>
         )
-    } else {
-        return (
-            <div className='status-icon'>
-                <p>
-                    DELETED - CHECK IN TRASH
-                </p>
-            </div>
-        )
-    }
+    } 
+    // else {
+    //     return (
+    //         <div className='status-icon'>
+    //             <p>
+    //                 DELETED - CHECK IN TRASH
+    //             </p>
+    //         </div>
+    //     )
+    // }
 }
 
 export default StatusIcons
