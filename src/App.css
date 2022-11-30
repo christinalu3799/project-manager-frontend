@@ -24,7 +24,7 @@
 /* ============= LIGHT/DARK THEME =============== */
 .theme-toggler {
     position: fixed;
-    bottom: 2rem;
+    bottom: 4.5rem;
     right: 2rem;
     z-index: 10;
 }
@@ -41,6 +41,7 @@
 
 /* ============================================== */
 .main {
+    height: calc(100vh);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -113,7 +114,26 @@ p {
 .dropdown-menu.show {
     width: fit-content;
 }
-
+.dark .footer {
+    background-color: var(--dark-nav-bg-color);
+}
+.footer {
+    display: flex; 
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    padding: 0 0 0 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50px;
+    background-color: var(--body-font-color);
+    width: 100%;
+    color: var(--off-white);
+}
+.footer a {
+    text-decoration: none;
+    color: var(--off-white);
+}
 @media only screen and (max-width: 1000px) {
     .custom-nav {
         display: flex;

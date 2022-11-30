@@ -20,6 +20,7 @@ import NotFound from './pages/NotFound'
 import LogoWhite from './static/logo-white.png'
 import LogoBlack from './static/logo-black.png'
 import Switch from 'react-switch'
+import Footer  from './components/Footer'
 // ==================================================================================
 let baseURL
 process.env.REACT_APP_NODE_ENV === 'development'
@@ -278,6 +279,8 @@ const App = () => {
                 <Route path='*' element={<NotFound/>}/>
 
             </Routes>
+            
+            <Footer />
         </div>
     )
 }
